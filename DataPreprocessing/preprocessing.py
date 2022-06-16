@@ -14,14 +14,16 @@ def adjustBrand(inputString):
 def zalando_preprocessing():
     df = pd.read_csv(os.path.abspath('./Datasets/Zalando.csv'), error_bad_lines=False)
     df = df[["ArticleId", "ProductName", "Color", "Price", "Brand"]]
-    df.rename(columns = {'articleId':'id', 'ProductName':'name', 'Color':'variant', 'Price':'price', 'Brand': 'brand'}, inplace = True)
+    df.rename(columns = {'ArticleId':'id', 'ProductName':'name', 'Color':'variant', 'Price':'price', 'Brand': 'brand'}, inplace = True)
 
     df["name"] = df["name"].apply(lambda x: x.split(';')[0].split(' - ')[-2])
 
     df = clean_columns(df, ['name', 'variant'])
 
     df["brand"] = df["brand"].apply(lambda x: x.lower())
-    df["brand"].apply(lambda x: adjustBrand(x))
+    df["brand"] = df["brand"].apply(lambda x: adjustBrand(x))
+
+
     with pd.option_context('display.max_columns', None,):
         print(df)
 

@@ -11,7 +11,7 @@ def load_data_to_dict(filename):
 
     for rec in csv_reader:
         data_dict[rec[0]] = rec[1:]
-    print(data_dict)
+    #print(data_dict)
 
 
     return data_dict
