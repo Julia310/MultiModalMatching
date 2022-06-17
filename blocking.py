@@ -12,8 +12,6 @@ def blocking(data_dict):
             blocking_dict[blocking_key] = []
         blocking_dict[blocking_key].append(id)
 
-    print(blocking_dict.keys())
-
     return blocking_dict
 
 
