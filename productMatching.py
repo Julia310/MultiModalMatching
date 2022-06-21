@@ -27,17 +27,10 @@ def main():
 
     mUtilities = MatchingUtilities([datasets[-1]], datasets[:-1])
 
-    '''text_embedding_generator = TransformersEmbeddingGenerator(model='sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
-    embeddings = text_embedding_generator.createTextEmbedding(sentences=['10000000', '34'])
+    text_embedding_generator = TransformersEmbeddingGenerator(model='sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
+    embeddings = text_embedding_generator.createTextEmbedding(sentences=['This is a sentence', 'This is another sentence'])
     print(cosine_similarity(embeddings[0], embeddings[1]))
-    embeddings = text_embedding_generator.createTextEmbedding(sentences=['99', '39'])
-    print(cosine_similarity(embeddings[0], embeddings[1]))
-    embeddings = text_embedding_generator.createTextEmbedding(sentences=['99', '1000'])
-    print(cosine_similarity(embeddings[0], embeddings[1]))
-    embeddings = text_embedding_generator.createTextEmbedding(sentences=['1000', '99'])
-    print(cosine_similarity(embeddings[0], embeddings[1]))
-    embeddings = text_embedding_generator.createTextEmbedding(sentences=['99', '100'])
-    print(cosine_similarity(embeddings[0], embeddings[1]))'''
+
 
     print('')
 
