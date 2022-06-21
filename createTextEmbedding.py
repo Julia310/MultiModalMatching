@@ -1,26 +1,27 @@
-from transformers import AutoTokenizer
-from transformers import pipeline
-from numpy import array
+from transformers import AutoTokenizer, AutoModel
+import torch
 
-class TextEmbeddingGenerator:
 
-    def __init__(self, model_name):
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.feature_extractor = pipeline('feature-extraction',model=model_name, tokenizer=self.tokenizer)
+class TransformersEmbeddingGenerator:
+    def __init__(self, model):
+        self.tokenizer = AutoTokenizer.from_pretrained(model)
+        self.model = AutoModel.from_pretrained(model)
 
-    def createEmbeddingList(self, text_list):
-        embedding_list = []
-        for text in text_list:
-            features = self.createTextEmbedding(text)
-            a = array(features)
-            print(a.shape)
-            embedding_list.append(features)
-        return embedding_list
+    def createTextEmbedding(self, sentences):
+        encoded_input = self.tokenizer(sentences, padding=True, truncation=True, return_tensors='pt')
 
-    def createTextEmbedding(self, text):
-        tokens = self.tokenizer(text)
-        if (len(tokens['input_ids'])) > 512:
-            tokens = [t for t in tokens if len(t) > 0 ]
-            text = ''.join(tokens[:512])
-        return self.feature_extractor(text)[0][0]
+        with torch.no_grad():
+            model_output = self.model(**encoded_input)
+
+        sentence_embeddings = self.mean_pooling(model_output, encoded_input['attention_mask'])
+
+        return sentence_embeddings.cpu().detach().numpy()
+
+    def mean_pooling(self, model_output, attention_mask):
+        token_embeddings = model_output[0]  # First element of model_output contains all token embeddings
+        input_mask_expanded = attention_mask.unsqueeze(-1).expand(token_embeddings.size()).float()
+        return torch.sum(token_embeddings * input_mask_expanded, 1) / torch.clamp(input_mask_expanded.sum(1), min=1e-9)
+
+
+
 

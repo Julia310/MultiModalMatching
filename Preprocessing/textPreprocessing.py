@@ -1,5 +1,5 @@
 import pandas as pd
-from DataPreprocessing.dataCleaning import clean_columns
+from Preprocessing.textCleaning import clean_columns
 import os
 
 
@@ -12,54 +12,68 @@ def adjustBrand(inputString):
 
 
 def zalando_preprocessing():
-    df = pd.read_csv(os.path.abspath('./Datasets/Zalando.csv'), error_bad_lines=False)
-    df = df[["ArticleId", "ProductName", "Color", "Price", "Brand"]]
-    df.rename(columns = {'ArticleId':'id', 'ProductName':'name', 'Color':'variant', 'Price':'price', 'Brand': 'brand'}, inplace = True)
+    if not os.path.exists(os.path.abspath('./Datasets/clean_Zalando.csv')):
+        df = pd.read_csv(os.path.abspath('./Datasets/Zalando.csv'), error_bad_lines=False)
+        df = df[["ArticleId", "ProductName", "Color", "Price", "Brand"]]
+        df.rename(columns = {'ArticleId':'id', 'ProductName':'name', 'Color':'variant', 'Price':'price', 'Brand': 'brand'}, inplace = True)
 
-    df["name"] = df["name"].apply(lambda x: x.split(';')[0].split(' - ')[-2])
+        df["name"] = df["name"].apply(lambda x: x.split(';')[0].split(' - ')[-2])
 
-    df = clean_columns(df, ['name', 'variant'])
+        df = clean_columns(df, ['name', 'variant'])
 
-    df["brand"] = df["brand"].apply(lambda x: x.lower())
-    df["brand"] = df["brand"].apply(lambda x: adjustBrand(x))
+        df["brand"] = df["brand"].apply(lambda x: x.lower())
+        df["brand"] = df["brand"].apply(lambda x: adjustBrand(x))
 
+        with pd.option_context('display.max_columns', None,):
+            print(df)
 
-    with pd.option_context('display.max_columns', None,):
-        print(df)
-
-    df.to_csv(os.path.abspath('./Datasets/clean_Zalando.csv'))
+        df.to_csv(os.path.abspath('./Datasets/clean_Zalando.csv'), index=False)
 
 
 def tommyh_preprocessing():
+    if not os.path.exists(os.path.abspath('./Datasets/clean_TommyHilfiger.csv')):
+        df = pd.read_csv(os.path.abspath('./Datasets/TommyHilfiger.csv'))
+        df = df[['MPN', 'name', 'variant', 'price']]
+        df.rename(columns = {'MPN':'id'}, inplace = True)
 
-    df = pd.read_csv(os.path.abspath('./Datasets/TommyHilfiger.csv'))
-    df = df[['MPN', 'name', 'variant', 'price']]
-    df.rename(columns = {'MPN':'id'}, inplace = True)
 
+        df = clean_columns(df, ['name', 'variant'])
 
-    df = clean_columns(df, ['name', 'variant'])
+        df = df.assign(brand="tommy hilfiger")
 
-    df = df.assign(brand="tommy hilfiger")
+        with pd.option_context('display.max_columns', None,):
+            print(df)
 
-    with pd.option_context('display.max_columns', None,):
-        print(df)
+        df.to_csv(os.path.abspath('./Datasets/clean_TommyHilfiger.csv'), index=False)
 
-    df.to_csv(os.path.abspath('./Datasets/clean_TommyHilfiger.csv'))
 
 def gerryw_preprocessing():
-    df = pd.read_csv(os.path.abspath('./Datasets/GerryWeber.csv'))
-    df = df[['MPN', 'name', 'variant', 'price']]
-    df.rename(columns = {'MPN':'id'}, inplace = True)
+    if not os.path.exists(os.path.abspath('./Datasets/clean_GerryWeber.csv')):
+        df = pd.read_csv(os.path.abspath('./Datasets/GerryWeber.csv'))
+        df = df[['MPN', 'name', 'variant', 'price']]
+        df.rename(columns = {'MPN':'id'}, inplace = True)
+
+        df = clean_columns(df, ['name', 'variant'])
+
+        df = df.assign(brand="gerry weber")
+
+        with pd.option_context('display.max_columns', None,):
+            print(df)
+
+        df.to_csv(os.path.abspath('./Datasets/clean_GerryWeber.csv'), index=False)
 
 
-    df = clean_columns(df, ['name', 'variant'])
+def preprocess_text_data():
+    tommyh_preprocessing()
+    gerryw_preprocessing()
+    zalando_preprocessing()
 
-    df = df.assign(brand="gerry weber")
+    clean_datasets = [
+        os.path.abspath('./Datasets/clean_GerryWeber.csv'),
+        os.path.abspath('./Datasets/clean_TommyHilfiger.csv'),
+        os.path.abspath('./Datasets/clean_Zalando.csv')
+    ]
 
-    with pd.option_context('display.max_columns', None,):
-        print(df)
-
-    df.to_csv(os.path.abspath('./Datasets/clean_GerryWeber.csv'))
-
+    return clean_datasets
 
 

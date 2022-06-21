@@ -1,29 +1,43 @@
-from DataPreprocessing.preprocessing import *
-from loadDataset import load_data_to_dict
-from blocking import blocking
-from createMatchCandidates import create_candidates
-import csv
-import os
+from Preprocessing.textPreprocessing import preprocess_text_data
+from matchingUtilities import MatchingUtilities
+from createTextEmbedding import TransformersEmbeddingGenerator
+from sklearn.metrics.pairwise import cosine_similarity
+from math import *
+
+def square_rooted(x):
+    return round(sqrt(sum([a * a for a in x])), 5)
+
+
+def cosine_similarity(x, y):
+    numerator = sum(a * b for a, b in zip(x, y))
+    denominator = square_rooted(x) * square_rooted(y)
+    return round(numerator / float(denominator), 3)
+
+
+def jaccard_similarity(x,y):
+    intersection_cardinality = len(set.intersection(*[set(x), set(y)]))
+    union_cardinality = len(set.union(*[set(x), set(y)]))
+    return intersection_cardinality/float(union_cardinality)
+
+
 
 
 def main():
-    #tommyh_preprocessing()
-    #gerryw_preprocessing()
-    #zalando_preprocessing()
+    datasets = preprocess_text_data()
 
-    data_dict_gerryw = load_data_to_dict(os.path.abspath('./Datasets/clean_GerryWeber.csv'))
-    data_dict_tommyh = load_data_to_dict(os.path.abspath('./Datasets/clean_TommyHilfiger.csv'))
-    data_dict_zalando = load_data_to_dict(os.path.abspath('./Datasets/clean_Zalando.csv'))
+    mUtilities = MatchingUtilities([datasets[-1]], datasets[:-1])
 
-
-    gerryw_blocking_dict = blocking(data_dict_gerryw)
-    tommyh_blocking_dict = blocking(data_dict_tommyh)
-    zalando_blocking_dict = blocking(data_dict_zalando)
-
-    #gw_th_blocking_dict = {**gerryw_blocking_dict, **tommyh_blocking_dict}
-
-    potential_matches_gw_zalando = create_candidates(gerryw_blocking_dict, zalando_blocking_dict)
-    potential_matches_th_zalando = create_candidates(tommyh_blocking_dict, zalando_blocking_dict)
+    '''text_embedding_generator = TransformersEmbeddingGenerator(model='sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
+    embeddings = text_embedding_generator.createTextEmbedding(sentences=['10000000', '34'])
+    print(cosine_similarity(embeddings[0], embeddings[1]))
+    embeddings = text_embedding_generator.createTextEmbedding(sentences=['99', '39'])
+    print(cosine_similarity(embeddings[0], embeddings[1]))
+    embeddings = text_embedding_generator.createTextEmbedding(sentences=['99', '1000'])
+    print(cosine_similarity(embeddings[0], embeddings[1]))
+    embeddings = text_embedding_generator.createTextEmbedding(sentences=['1000', '99'])
+    print(cosine_similarity(embeddings[0], embeddings[1]))
+    embeddings = text_embedding_generator.createTextEmbedding(sentences=['99', '100'])
+    print(cosine_similarity(embeddings[0], embeddings[1]))'''
 
     print('')
 
