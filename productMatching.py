@@ -1,23 +1,8 @@
-from Preprocessing.textPreprocessing import preprocess_text_data
+from TextPreprocessing.textPreprocessing import preprocess_text_data
 from matchingUtilities import MatchingUtilities
-from createTextEmbedding import TransformersEmbeddingGenerator
-from sklearn.metrics.pairwise import cosine_similarity
-from math import *
-
-def square_rooted(x):
-    return round(sqrt(sum([a * a for a in x])), 5)
-
-
-def cosine_similarity(x, y):
-    numerator = sum(a * b for a, b in zip(x, y))
-    denominator = square_rooted(x) * square_rooted(y)
-    return round(numerator / float(denominator), 3)
-
-
-def jaccard_similarity(x,y):
-    intersection_cardinality = len(set.intersection(*[set(x), set(y)]))
-    union_cardinality = len(set.union(*[set(x), set(y)]))
-    return intersection_cardinality/float(union_cardinality)
+from EmbeddingCreation.createTextEmbedding import ManageTextEmbeddings
+from EmbeddingCreation.createImageEmbedding import ManageImageEmbeddings
+from time import time
 
 
 
@@ -25,14 +10,33 @@ def jaccard_similarity(x,y):
 def main():
     datasets = preprocess_text_data()
 
-    mUtilities = MatchingUtilities([datasets[-1]], datasets[:-1])
+    print('Start preparing data for embedding creation')
+    start = time()
 
-    text_embedding_generator = TransformersEmbeddingGenerator(model='sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
-    embeddings = text_embedding_generator.createTextEmbedding(sentences=['This is a sentence', 'This is another sentence'])
-    print(cosine_similarity(embeddings[0], embeddings[1]))
+    m_utilities = MatchingUtilities([datasets[-1]], datasets[:-1])
+    text_data_df1, text_data_df2 = m_utilities.get_matching_text_data_as_df(column_names = ['name', 'variant', 'price'])
+    image_list1, image_list2 = m_utilities.get_matching_image_path_list()
+
+    print('data prepared for embedding creation in ' + str((time() - start) / 60.0) + ' minutes')
+
+    print('start creating and saving text embeddings')
+    start = time()
+
+    text_to_embeddings_obj = ManageTextEmbeddings('sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2', text_data_df1, text_data_df2, 'zal', 'th_gw')
+    text_to_embeddings_obj.generate_and_save_embeddings()
+
+    print('text embeddings created and saved in ' + str((time() - start) / 60.0) + ' minutes')
+
+    print('start creating and saving image embeddings')
+    start = time()
+
+    images_to_embeddings = ManageImageEmbeddings(image_list1, image_list2, 'zal', 'th_gw')
+    images_to_embeddings.generate_and_save_embeddings()
+
+    print('image embeddings created and saved in ' + str((time() - start) / 60.0) + ' minutes')
 
 
-    print('')
+
 
 
 
