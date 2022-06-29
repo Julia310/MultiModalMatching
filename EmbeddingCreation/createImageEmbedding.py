@@ -1,3 +1,4 @@
+import keras.models
 from keras.applications.resnet import ResNet50
 from keras.layers import Flatten
 from keras.models import Model
@@ -5,6 +6,7 @@ from ImagePreprocessing.imageBatchPreprocessing import ImageBatchIterator
 from multiprocessing.pool import ThreadPool
 from ImagePreprocessing.imagePreprocessing import get_and_preprocess_image
 from DatabaseManager.databaseConnection import MySQLManager
+import os
 
 
 class ImageEmbeddingGenerator:
@@ -13,9 +15,14 @@ class ImageEmbeddingGenerator:
         self.model = self.instantiate_model()
 
     def instantiate_model(self):
-        resnet = ResNet50(input_shape=self.image_size, weights='imagenet', include_top=False)
-        output = Flatten()(resnet.output)
-        model = Model(inputs=resnet.input, outputs=output)
+        print(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'saved_model.pb'))
+        if not os.path.exists(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'saved_model.pb')):
+            resnet = ResNet50(input_shape=self.image_size, weights='imagenet', include_top=False)
+            output = Flatten()(resnet.output)
+            model = Model(inputs=resnet.input, outputs=output)
+            model.save(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model'))
+        else:
+            model = keras.models.load_model(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model'))
         return model
 
     def get_image_embedding(self, img_dict):

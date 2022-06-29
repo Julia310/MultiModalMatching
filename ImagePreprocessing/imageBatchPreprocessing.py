@@ -16,5 +16,7 @@ class ImageBatchIterator:
         image_path_sublist = self.image_path_list[self.idx:idx_max]
         self.idx = idx_max
 
+        print('preprocess images ' + str(self.idx) + ' - ' + str(idx_max))
+
         return image_path_sublist
 
