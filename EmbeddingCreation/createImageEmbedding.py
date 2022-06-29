@@ -7,6 +7,7 @@ from multiprocessing.pool import ThreadPool
 from ImagePreprocessing.imagePreprocessing import get_and_preprocess_image
 from DatabaseManager.databaseConnection import MySQLManager
 import os
+from tqdm import tqdm
 
 
 class ImageEmbeddingGenerator:
@@ -15,14 +16,13 @@ class ImageEmbeddingGenerator:
         self.model = self.instantiate_model()
 
     def instantiate_model(self):
-        print(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'saved_model.pb'))
-        if not os.path.exists(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'saved_model.pb')):
+        if not os.path.exists(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'resnet.h5')):
             resnet = ResNet50(input_shape=self.image_size, weights='imagenet', include_top=False)
             output = Flatten()(resnet.output)
             model = Model(inputs=resnet.input, outputs=output)
-            model.save(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model'))
+            model.save(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'resnet.h5'), save_format='h5')
         else:
-            model = keras.models.load_model(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model'))
+            model = keras.models.load_model(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'resnet.h5'))
         return model
 
     def get_image_embedding(self, img_dict):
@@ -50,7 +50,7 @@ class ManageImageEmbeddings:
 
             embeddings = []
 
-            for img_data in img_batch:
+            for img_data in tqdm(img_batch, desc='create embeddings from batch'):
                 embeddings.append(self.image_embedding_generator.get_image_embedding(img_data))
 
             self.db_manager.update_image_by_articleId(embeddings, data_source)

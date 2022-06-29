@@ -2,6 +2,7 @@ from transformers import AutoTokenizer, AutoModel
 import torch
 from DatabaseManager.databaseConnection import MySQLManager
 import numpy as np
+from tqdm import tqdm
 
 
 def mean_pooling(model_output, attention_mask):
@@ -50,7 +51,7 @@ class ManageTextEmbeddings:
 
     def create_embedding_dicts_from_lists(self, indexes, columns, emb_list, data_source):
         embeddings = []
-        for i in range(len(indexes)):
+        for i in tqdm(range(len(indexes)), desc='create text embeddings'):
             row = emb_list[:, i]
             values = {columns[0]: indexes[i]}
             for j in range(len(row)):
@@ -58,16 +59,3 @@ class ManageTextEmbeddings:
             embeddings.append(values)
         self.db_manager.save_many(embeddings, data_source)
 
-    def save_article_ids(self, text_df, data_source):
-        id_list = [
-            {'articleId': element}
-            for element in text_df.index
-        ]
-        self.db_manager.save_many(id_list, data_source)
-
-    def save_embeddings(self, embedding_list, attribute, data_source):
-        embed_list = [
-            {attribute: str(list(embedding))[1:][:-1]}
-            for embedding in embedding_list
-        ]
-        self.db_manager.save_many(embed_list, data_source)

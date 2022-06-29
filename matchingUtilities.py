@@ -3,8 +3,20 @@ import itertools
 import pandas as pd
 
 
-def load_data_to_dict(filename):
+def create_data_dict(data_path_list):
+    data_dict = dict()
+    data_dict_list = []
+    for path in data_path_list:
+        data_dict_list.append(load_data_to_dict(path))
+    if distinct_dict_keys_check(data_dict_list):
+        for data_dict2 in data_dict_list:
+            data_dict = {**data_dict, **data_dict2}
+    else:
+        raise Exception('Dictionaries contain same keys. Please make sure keys are distinct to merge dictionaries.')
+    return data_dict
 
+
+def load_data_to_dict(filename):
     file = open(filename)
     csv_reader = csv.reader(file)
     next(csv_reader)
@@ -54,24 +66,12 @@ def rename_df(df, column_names):
 class MatchingUtilities:
 
     def __init__(self, data_path_list1, data_path_list2):
-        self.data_dict1 = self.create_data_dict(data_path_list1)
-        self.data_dict2 = self.create_data_dict(data_path_list2)
+        self.data_dict1 = create_data_dict(data_path_list1)
+        self.data_dict2 = create_data_dict(data_path_list2)
         self.block_dict1 = blocking(self.data_dict1)
         self.block_dict2 = blocking(self.data_dict2)
         self.potential_matches = self.create_candidates()
         self.remove_irrelevant_data_from_dict()
-
-    def create_data_dict(self, data_path_list):
-        data_dict = dict()
-        data_dict_list = []
-        for path in data_path_list:
-            data_dict_list.append(load_data_to_dict(path))
-        if distinct_dict_keys_check(data_dict_list):
-            for data_dict2 in data_dict_list:
-                data_dict = {**data_dict, **data_dict2}
-        else:
-            raise Exception('Dictionaries contain same keys. Please make sure keys are distinct to merge dictionaries.')
-        return data_dict
 
     def create_candidates(self):
         keys = list(self.block_dict1.keys())

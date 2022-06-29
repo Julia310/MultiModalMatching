@@ -3,8 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="5e2fbe45-85d4-4ecc-be09-8a604157b40c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DatabaseManager/databaseConnection.py" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseManager/databaseConnection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmbeddingCreation/Model/keras_metadata.pb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmbeddingCreation/Model/saved_model.pb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmbeddingCreation/Model/variables/variables.data-00000-of-00001" beforeDir="false" afterPath="$PROJECT_DIR$/EmbeddingCreation/Model/resnet.h5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmbeddingCreation/Model/variables/variables.index" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/EmbeddingCreation/createImageEmbedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmbeddingCreation/createImageEmbedding.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/productMatching.py" beforeDir="false" afterPath="$PROJECT_DIR$/productMatching.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagePreprocessing/imageBatchPreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImagePreprocessing/imageBatchPreprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matchingUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/matchingUtilities.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +132,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py</url>
-          <line>58</line>
+          <line>59</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -134,9 +141,14 @@
           <option name="timeStamp" value="69" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/DatabaseManager/databaseConnection.py</url>
-          <line>27</line>
-          <option name="timeStamp" value="70" />
+          <url>file://$PROJECT_DIR$/ImagePreprocessing/imageBatchPreprocessing.py</url>
+          <line>15</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/productMatching.py</url>
+          <line>32</line>
+          <option name="timeStamp" value="73" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
