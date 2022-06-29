@@ -21,7 +21,6 @@ class ImageEmbeddingGenerator:
     def get_image_embedding(self, img_dict):
         image = img_dict['image']
         vector = self.model.predict(image)[0].dumps()
-        print(vector)
         return {'articleId': img_dict['articleId'], 'image': vector}
 
 

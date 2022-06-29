@@ -20,10 +20,11 @@ class MySQLManager:
                 print(str(idx_max) + ' rows inserted')
 
     def update_image_by_articleId(self, batch, data_source):
+        products = []
         for data_dict in batch:
             product = self.table_dict[data_source].select().\
                 where(self.table_dict[data_source].articleId == data_dict['articleId'])
-            product.image = data_dict['image']
-            query = self.table_dict[data_source].update(image=data_dict['image']).where(
-                self.table_dict[data_source].articleId == data_dict['articleId'])
-            query.execute()
+
+            product[0].image = data_dict['image']
+            products.append(product[0])
+        self.table_dict[data_source].bulk_update([products], fields=self.table_dict[data_source].image)
