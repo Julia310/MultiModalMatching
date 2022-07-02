@@ -93,7 +93,7 @@ class MatchingUtilities:
 
         for data_dict in [self.data_dict1, self.data_dict2]:
             for key in list(data_dict.keys()):
-                if not data_dict[key][-1] in potential_matches_keys:
+                if not data_dict[key][-1] + ' ' + data_dict[key][-2] in potential_matches_keys:
                     del data_dict[key]
 
     def get_potential_matches(self):
@@ -105,6 +105,7 @@ class MatchingUtilities:
 
         df2 = pd.DataFrame.from_dict(self.data_dict2, orient='index')
         df2 = rename_df(df2, column_names)
+        print(df1)
 
         return df1, df2
 

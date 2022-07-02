@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e2fbe45-85d4-4ecc-be09-8a604157b40c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/TextPreprocessing/CategoryTest/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TextPreprocessing/CategoryTest/test_matches.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TextPreprocessing/addCategories.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseManager/manageTeables.py" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseManager/manageTables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datasets/clean_GerryWeber.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/clean_GerryWeber.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datasets/clean_TommyHilfiger.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/clean_TommyHilfiger.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datasets/clean_Zalando.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/clean_Zalando.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TextPreprocessing/textPreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/TextPreprocessing/textPreprocessing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/matchingUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/matchingUtilities.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/productMatching.py" beforeDir="false" afterPath="$PROJECT_DIR$/productMatching.py" afterDir="false" />
     </list>
@@ -170,7 +162,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/productMatching.py</url>
-          <line>38</line>
+          <line>33</line>
           <option name="timeStamp" value="73" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -185,13 +177,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/matchingUtilities.py</url>
-          <line>50</line>
-          <option name="timeStamp" value="83" />
+          <line>109</line>
+          <option name="timeStamp" value="87" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/matchingUtilities.py</url>
-          <line>88</line>
-          <option name="timeStamp" value="84" />
+          <line>117</line>
+          <option name="timeStamp" value="88" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
