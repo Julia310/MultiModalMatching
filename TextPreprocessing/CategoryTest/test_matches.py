@@ -22,8 +22,6 @@ def test_matches(matches, df1, df2):
         cat1 = df1.loc[df1['id'] == rec[0]]['category'].tolist()[0]
         cat2 = df2.loc[df2['id'] == rec[1]]['category'].tolist()[0]
 
-
-
         if not cat1 == cat2:
             print('================================================')
 
@@ -39,15 +37,12 @@ def test_matches(matches, df1, df2):
     print('not found: ' + str(wrong_count))
 
 
-
 def main():
-
     df2 = pd.read_csv(gw)
     df_zal = pd.read_csv(zal)
     test_matches(gw_zal, df_zal, df2)
     df2 = pd.read_csv(th)
     test_matches(th_zal, df_zal, df2)
-
 
 
 if __name__ == "__main__":
