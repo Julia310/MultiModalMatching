@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e2fbe45-85d4-4ecc-be09-8a604157b40c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/TextPreprocessing/CategoryTest/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextPreprocessing/CategoryTest/test_matches.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TextPreprocessing/addCategories.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DatabaseManager/manageTeables.py" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseManager/manageTables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/clean_GerryWeber.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/clean_GerryWeber.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/clean_TommyHilfiger.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/clean_TommyHilfiger.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/clean_Zalando.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/clean_Zalando.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TextPreprocessing/textPreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/TextPreprocessing/textPreprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matchingUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/matchingUtilities.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/productMatching.py" beforeDir="false" afterPath="$PROJECT_DIR$/productMatching.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +48,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ImagePreprocessing" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/productMatching.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -49,7 +59,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.productMatching">
-    <configuration name="manageTeables" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="manageTables" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="MultiModalMatching" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -61,7 +71,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DatabaseManager/manageTeables.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\JPete\Documents\Uni\BigDataPraktikum\MultiModalMatching\DatabaseManager\manageTables.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -91,9 +101,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test_matches" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="MultiModalMatching" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\JPete\Documents\Uni\BigDataPraktikum\Test\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TextPreprocessing/CategoryTest" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TextPreprocessing/CategoryTest/test_matches.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Python.manageTeables" />
+      <item itemvalue="Python.test_matches" />
       <item itemvalue="Python.productMatching" />
+      <item itemvalue="Python.manageTables" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -138,8 +170,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/productMatching.py</url>
-          <line>32</line>
+          <line>38</line>
           <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/TextPreprocessing/textPreprocessing.py</url>
+          <line>41</line>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/TextPreprocessing/CategoryTest/test_matches.py</url>
+          <line>22</line>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/matchingUtilities.py</url>
+          <line>50</line>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/matchingUtilities.py</url>
+          <line>88</line>
+          <option name="timeStamp" value="84" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

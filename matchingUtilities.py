@@ -43,7 +43,7 @@ def blocking(data_dict):
     ids = list(data_dict.keys())
 
     for id in ids:
-        blocking_key = data_dict[id][-1]
+        blocking_key = data_dict[id][-1] + ' ' + data_dict[id][-2]
         if not (blocking_key in blocking_dict):
             blocking_dict[blocking_key] = []
         blocking_dict[blocking_key].append(id)
@@ -74,13 +74,17 @@ class MatchingUtilities:
         self.remove_irrelevant_data_from_dict()
 
     def create_candidates(self):
-        keys = list(self.block_dict1.keys())
+        keys = list(self.block_dict2.keys())
 
         potential_matches = {}
 
+        cnt = 0
         for key in keys:
-            if key in self.block_dict2:
+            if key in self.block_dict1:
                 potential_matches[key] = list(itertools.product(self.block_dict1[key], self.block_dict2[key]))
+                cnt += len(potential_matches[key])
+
+        print('number of potential matches: ' + str(cnt))
 
         return potential_matches
 

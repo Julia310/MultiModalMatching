@@ -1,6 +1,7 @@
 import pandas as pd
 from TextPreprocessing.textCleaning import clean_columns
 import os
+from TextPreprocessing.addCategories import add_categories
 
 
 def adjust_brand(input_string):
@@ -38,6 +39,8 @@ def zalando_preprocessing():
         df["variant"] = df["variant"].apply(lambda x: x.lower())
         df["image"] = df["image"].apply(lambda x: get_first_image(x, 'z'))
 
+        add_categories(df)
+
         with pd.option_context('display.max_columns', None, ):
             print(df)
 
@@ -56,6 +59,8 @@ def tommyh_preprocessing():
         df["variant"] = df["variant"].apply(lambda x: x.lower())
         df["image"] = df["image"].apply(lambda x: get_first_image(x, 'th'))
 
+        add_categories(df)
+
         with pd.option_context('display.max_columns', None, ):
             print(df)
 
@@ -73,6 +78,8 @@ def gerryw_preprocessing():
 
         df["variant"] = df["variant"].apply(lambda x: x.lower())
         df["image"] = df["image"].apply(lambda x: get_first_image(x, 'gw'))
+
+        add_categories(df)
 
         with pd.option_context('display.max_columns', None, ):
             print(df)
