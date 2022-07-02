@@ -105,7 +105,6 @@ class MatchingUtilities:
 
         df2 = pd.DataFrame.from_dict(self.data_dict2, orient='index')
         df2 = rename_df(df2, column_names)
-        print(df1)
 
         return df1, df2
 
