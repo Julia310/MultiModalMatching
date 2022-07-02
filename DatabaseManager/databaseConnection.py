@@ -1,6 +1,7 @@
 from DatabaseManager.peeweeModels import mysql_db, ZalandoEmbeddings, TommyHGerryWEmbeddings
 from tqdm import tqdm
 
+
 class MySQLManager:
 
     def __init__(self):
@@ -21,6 +22,6 @@ class MySQLManager:
 
     def update_image_by_articleId(self, batch, data_source):
         for data_dict in tqdm(batch, desc='save image embeddings'):
-            query = self.table_dict[data_source].update(image=data_dict['image']).\
+            query = self.table_dict[data_source].update(image=data_dict['image']). \
                 where(self.table_dict[data_source].articleId == data_dict['articleId'])
             query.execute()
