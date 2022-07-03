@@ -12,7 +12,7 @@ def main():
     print('Start processing')
     datasets = preprocess_text_data()
 
-    print('Init Matching Utilities')
+    '''print('Init Matching Utilities')
     m_utilities = MatchingUtilities([datasets[-1]], datasets[:-1])
     print('data prepared for embedding creation in ' + str((time() - start) / 60.0) + ' minutes')
 
@@ -36,7 +36,7 @@ def main():
     image_list1, image_list2 = m_utilities.get_matching_image_path_list()
     images_to_embeddings = ManageImageEmbeddings(image_list1, image_list2, 'zal', 'th_gw')
     images_to_embeddings.generate_embeddings()
-    print('image embeddings created and saved in ' + str((time() - start) / 60.0) + ' minutes')
+    print('image embeddings created and saved in ' + str((time() - start) / 60.0) + ' minutes')'''
 
 
 if __name__ == "__main__":

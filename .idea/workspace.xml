@@ -9,8 +9,11 @@
       <change beforePath="$PROJECT_DIR$/Datasets/clean_TommyHilfiger.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/clean_TommyHilfiger.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Datasets/clean_Zalando.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/clean_Zalando.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EmbeddingCreation/createImageEmbedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmbeddingCreation/createImageEmbedding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagePreprocessing/MissingImages/FBA3425001_200_main_$main$.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagePreprocessing/MissingImages/KB0KB06538_XNL_main_$main$.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ImagePreprocessing/imageBatchPreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImagePreprocessing/imageBatchPreprocessing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ImagePreprocessing/imagePreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImagePreprocessing/imagePreprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TextPreprocessing/textCleaning.py" beforeDir="false" afterPath="$PROJECT_DIR$/TextPreprocessing/textCleaning.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TextPreprocessing/textPreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/TextPreprocessing/textPreprocessing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/matchingUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/matchingUtilities.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/productMatching.py" beforeDir="false" afterPath="$PROJECT_DIR$/productMatching.py" afterDir="false" />
@@ -175,11 +178,6 @@
           <option name="timeStamp" value="73" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/TextPreprocessing/textPreprocessing.py</url>
-          <line>62</line>
-          <option name="timeStamp" value="74" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/TextPreprocessing/CategoryTest/test_matches.py</url>
           <line>22</line>
           <option name="timeStamp" value="78" />
@@ -191,8 +189,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/matchingUtilities.py</url>
-          <line>124</line>
+          <line>123</line>
           <option name="timeStamp" value="88" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/TextPreprocessing/textCleaning.py</url>
+          <line>48</line>
+          <option name="timeStamp" value="93" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

@@ -50,7 +50,7 @@ def zalando_preprocessing():
 
         df["name"] = df["name"].apply(lambda x: x.split(';')[0].split(' - ')[-2])
 
-        df = clean_columns(df, ['name'])
+        df = clean_columns(df, ['name', 'variant', 'price'])
 
         df["brand"] = df["brand"].apply(lambda x: x.lower())
         df["brand"] = df["brand"].apply(lambda x: adjust_brand(x))
@@ -62,8 +62,8 @@ def zalando_preprocessing():
 
         add_categories(df)
 
-        with pd.option_context('display.max_columns', None, ):
-            print(df)
+        #with pd.option_context('display.max_columns', None, ):
+          #  print(df)
 
         df.to_csv(os.path.abspath('./Datasets/clean_Zalando.csv'), index=False)
 
@@ -74,7 +74,7 @@ def tommyh_preprocessing():
         df = df[['MPN', 'name', 'variant', 'price', 'images']]
         df.rename(columns={'MPN': 'id', 'images': 'image'}, inplace=True)
 
-        df = clean_columns(df, ['name'])
+        df = clean_columns(df, ['name', 'variant', 'price'])
         df = df.assign(brand="tommy hilfiger")
 
         df["variant"] = df["variant"].apply(lambda x: x.lower())
@@ -84,8 +84,8 @@ def tommyh_preprocessing():
 
         add_categories(df)
 
-        with pd.option_context('display.max_columns', None, ):
-            print(df)
+        #with pd.option_context('display.max_columns', None, ):
+            #print(df)
 
         df.to_csv(os.path.abspath('./Datasets/clean_TommyHilfiger.csv'), index=False)
 
@@ -96,7 +96,7 @@ def gerryw_preprocessing():
         df = df[['MPN', 'name', 'variant', 'price', 'images']]
         df.rename(columns={'MPN': 'id', 'images': 'image'}, inplace=True)
 
-        df = clean_columns(df, ['name'])
+        df = clean_columns(df, ['name', 'variant', 'price'])
         df = df.assign(brand="gerry weber")
 
         df["variant"] = df["variant"].apply(lambda x: x.lower())
@@ -106,8 +106,8 @@ def gerryw_preprocessing():
 
         add_categories(df)
 
-        with pd.option_context('display.max_columns', None, ):
-            print(df)
+        #with pd.option_context('display.max_columns', None, ):
+         #   print(df)
 
         df.to_csv(os.path.abspath('./Datasets/clean_GerryWeber.csv'), index=False)
 

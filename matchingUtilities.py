@@ -113,8 +113,7 @@ class MatchingUtilities:
         image_list1 = list({'articleId': key,
                             'path': self.data_dict1[key][4],
                             'brand': self.data_dict1[key][3],
-                            'url': self.data_dict1[key][5]
-                            }
+                            'url': self.data_dict1[key][5]}
                            for key in list(self.data_dict1.keys()))
 
         image_list2 = list({'articleId': key,
