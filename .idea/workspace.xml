@@ -2,7 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e2fbe45-85d4-4ecc-be09-8a604157b40c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DatabaseManager/databaseConnection.py" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseManager/databaseConnection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/clean_GerryWeber.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/clean_GerryWeber.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/clean_TommyHilfiger.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/clean_TommyHilfiger.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/clean_Zalando.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/clean_Zalando.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmbeddingCreation/createImageEmbedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmbeddingCreation/createImageEmbedding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagePreprocessing/imageBatchPreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImagePreprocessing/imageBatchPreprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagePreprocessing/imagePreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImagePreprocessing/imagePreprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TextPreprocessing/textPreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/TextPreprocessing/textPreprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matchingUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/matchingUtilities.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/productMatching.py" beforeDir="false" afterPath="$PROJECT_DIR$/productMatching.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +49,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../hallo__).patch" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/zwischenstand.patch" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -150,7 +161,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/EmbeddingCreation/createImageEmbedding.py</url>
-          <line>55</line>
+          <line>57</line>
           <option name="timeStamp" value="69" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -160,12 +171,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/productMatching.py</url>
-          <line>37</line>
+          <line>36</line>
           <option name="timeStamp" value="73" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/TextPreprocessing/textPreprocessing.py</url>
-          <line>41</line>
+          <line>62</line>
           <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -175,12 +186,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/matchingUtilities.py</url>
-          <line>108</line>
+          <line>109</line>
           <option name="timeStamp" value="87" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/matchingUtilities.py</url>
-          <line>116</line>
+          <line>124</line>
           <option name="timeStamp" value="88" />
         </line-breakpoint>
       </breakpoints>
