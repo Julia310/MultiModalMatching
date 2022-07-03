@@ -8,6 +8,9 @@ from comparison import cosine_similarity
 
 
 def main():
+
+    print('Start procession')
+
     datasets = preprocess_text_data()
 
     print('Start preparing data for embedding creation')
@@ -19,12 +22,13 @@ def main():
 
     print('data prepared for embedding creation in ' + str((time() - start) / 60.0) + ' minutes')
 
-    print('start creating and saving text embeddings')
+    print('start creating text embeddings')
     start = time()
 
     text_to_embeddings_obj = ManageTextEmbeddings('sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2',
                                                   text_data_df1, text_data_df2, 'zal', 'th_gw')
-    text_to_embeddings_obj.generate_and_save_embeddings()
+
+    text_to_embeddings_obj.generate_embeddings()
 
     print('text embeddings created and saved in ' + str((time() - start) / 60.0) + ' minutes')
 
@@ -32,7 +36,7 @@ def main():
     start = time()
 
     images_to_embeddings = ManageImageEmbeddings(image_list1, image_list2, 'zal', 'th_gw')
-    images_to_embeddings.generate_and_save_embeddings()
+    images_to_embeddings.generate_embeddings()
 
     print('image embeddings created and saved in ' + str((time() - start) / 60.0) + ' minutes')
 

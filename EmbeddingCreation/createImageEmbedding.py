@@ -56,6 +56,6 @@ class ManageImageEmbeddings:
             self.db_manager.update_image_by_articleId(embeddings, data_source)
             batch = image_batch_iterator.next_batch()
 
-    def generate_and_save_embeddings(self):
+    def generate_embeddings(self):
         self.process_image_batches(self.image_batch_iterator1, self.data_source1)
         self.process_image_batches(self.image_batch_iterator2, self.data_source2)

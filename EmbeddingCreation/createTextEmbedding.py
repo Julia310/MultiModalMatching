@@ -16,7 +16,7 @@ class TransformersEmbeddingGenerator:
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model_name = AutoModel.from_pretrained(model_name)
 
-    def createTextEmbedding(self, text):
+    def create_text_embeddings(self, text):
         encoded_input = self.tokenizer(text, padding=True, truncation=True, return_tensors='pt')
 
         with torch.no_grad():
@@ -37,14 +37,18 @@ class ManageTextEmbeddings:
         self.data_source2 = data_source2
         self.db_manager = MySQLManager()
 
-    def generate_and_save_embeddings(self):
+    def generate_embeddings(self):
 
         columns = list(self.text_df1.columns)
 
+        cnt = 1
         for (text_df, data_source) in [(self.text_df1, self.data_source1), (self.text_df2, self.data_source2)]:
+            print(f'Starting Data Set ' + str(cnt))
+            cnt += 1
             emb_list = []
-            for i in range(len(columns)):
-                emb_list.append(self.embedding_generator.createTextEmbedding(text=self.text_df1[columns[i]].tolist()))
+            for i in tqdm(range(len(columns)), desc='generate embeddings'):
+                emb_list.append(
+                    self.embedding_generator.create_text_embeddings(text=self.text_df1[columns[i]].tolist()))
             new_columns = ['articleId'] + columns
             self.create_embedding_dicts_from_lists(np.array(text_df.index), new_columns, np.array(emb_list),
                                                    data_source)
@@ -58,4 +62,3 @@ class ManageTextEmbeddings:
                 values[columns[j + 1]] = row[j].dumps()
             embeddings.append(values)
         self.db_manager.save_many(embeddings, data_source)
-
