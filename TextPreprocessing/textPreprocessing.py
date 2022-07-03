@@ -12,7 +12,7 @@ def adjust_brand(input_string):
     return input_string
 
 
-def get_first_image(urls, dataset):
+def get_first_image_url(urls, dataset):
     if dataset == 'th':
         url = urls.split(',')[0]
     elif dataset == 'z':
@@ -20,6 +20,25 @@ def get_first_image(urls, dataset):
     else:
         url = urls.split(',')[0]
     return url
+
+
+def get_first_image_path(url, dataset):
+    if dataset == 'th':
+        return url_to_file_name(url, dataset)
+    elif dataset == 'z':
+        print()
+    else:
+        return url_to_file_name(url, dataset)
+
+
+def url_to_file_name(url, dataset):
+    if dataset in ['th', 'z']:
+        file_name = url.split('/')[-1]
+        file_name_clean = file_name.split('?')[0]
+    else:
+        file_name_clean = url.split('/')[-1]
+
+    return file_name_clean
 
 
 def zalando_preprocessing():
@@ -37,7 +56,9 @@ def zalando_preprocessing():
         df["brand"] = df["brand"].apply(lambda x: adjust_brand(x))
 
         df["variant"] = df["variant"].apply(lambda x: x.lower())
-        df["image"] = df["image"].apply(lambda x: get_first_image(x, 'z'))
+        df["image_url"] = df["image"].apply(lambda x: get_first_image_url(x, 'z'))
+        df["image_name"] = df["image"].apply(lambda x: get_first_image_path(x, 'z'))
+        df = df[["id", "name", "variant", "price", "brand", "image_name", "image_url"]]
 
         add_categories(df)
 
@@ -57,7 +78,9 @@ def tommyh_preprocessing():
         df = df.assign(brand="tommy hilfiger")
 
         df["variant"] = df["variant"].apply(lambda x: x.lower())
-        df["image"] = df["image"].apply(lambda x: get_first_image(x, 'th'))
+        df["image_url"] = df["image"].apply(lambda x: get_first_image_url(x, 'th'))
+        df["image_name"] = df["image_url"].apply(lambda x: get_first_image_path(x, 'th'))
+        df = df[["id", "name", "variant", "price", "brand", "image_name", "image_url"]]
 
         add_categories(df)
 
@@ -77,7 +100,9 @@ def gerryw_preprocessing():
         df = df.assign(brand="gerry weber")
 
         df["variant"] = df["variant"].apply(lambda x: x.lower())
-        df["image"] = df["image"].apply(lambda x: get_first_image(x, 'gw'))
+        df["image_url"] = df["image"].apply(lambda x: get_first_image_url(x, 'gw'))
+        df["image_name"] = df["image"].apply(lambda x: get_first_image_path(x, 'gw'))
+        df = df[["id", "name", "variant", "price", "brand", "image_name", "image_url"]]
 
         add_categories(df)
 
@@ -93,8 +118,8 @@ def preprocess_text_data():
     zalando_preprocessing()
 
     clean_datasets = [
-        os.path.abspath('./Datasets/clean_GerryWeber.csv'),
         os.path.abspath('./Datasets/clean_TommyHilfiger.csv'),
+        os.path.abspath('./Datasets/clean_GerryWeber.csv'),
         os.path.abspath('./Datasets/clean_Zalando.csv')
     ]
 

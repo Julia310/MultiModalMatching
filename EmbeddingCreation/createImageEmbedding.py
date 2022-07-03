@@ -27,7 +27,7 @@ class ImageEmbeddingGenerator:
 
     def get_image_embedding(self, img_dict):
         image = img_dict['image']
-        vector = self.model.predict(image)[0].dumps()
+        vector = self.model.predict(image, verbose=0)[0].dumps()
         return {'articleId': img_dict['articleId'], 'image': vector}
 
 
@@ -42,19 +42,28 @@ class ManageImageEmbeddings:
         self.image_embedding_generator = ImageEmbeddingGenerator()
         self.db_manager = MySQLManager()
 
-    def process_image_batches(self, image_batch_iterator, data_source):
+    def process_image_batches(self, image_batch_iterator, data_source, multi=True):
         batch = image_batch_iterator.next_batch()
-        while not batch is None:
-
-            img_batch = self.pool.map(get_and_preprocess_image, batch)
-
+        while batch is not None:
             embeddings = []
+
+            if multi:
+                img_batch = self.pool.map(get_and_preprocess_image, batch)
+            else:
+                img_batch = self.batch_for_system(batch)
 
             for img_data in tqdm(img_batch, desc='create embeddings from batch'):
                 embeddings.append(self.image_embedding_generator.get_image_embedding(img_data))
 
             self.db_manager.update_image_by_articleId(embeddings, data_source)
             batch = image_batch_iterator.next_batch()
+
+    def batch_for_system(self, batch):
+        image_list = []
+        for image in batch:
+            if get_and_preprocess_image(image):
+                image_list.append(get_and_preprocess_image(image))
+        return image_list
 
     def generate_embeddings(self):
         self.process_image_batches(self.image_batch_iterator1, self.data_source1)

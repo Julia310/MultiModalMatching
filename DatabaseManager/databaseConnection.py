@@ -21,7 +21,7 @@ class MySQLManager:
                 print(str(idx_max) + ' rows inserted')
 
     def update_image_by_articleId(self, batch, data_source):
-        for data_dict in tqdm(batch, desc='save image embeddings'):
+        for data_dict in tqdm(batch, desc='save image embeddings       '):
             query = self.table_dict[data_source].update(image=data_dict['image']). \
                 where(self.table_dict[data_source].articleId == data_dict['articleId'])
             query.execute()

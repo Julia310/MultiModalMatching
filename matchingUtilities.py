@@ -43,7 +43,7 @@ def blocking(data_dict):
     ids = list(data_dict.keys())
 
     for id in ids:
-        blocking_key = data_dict[id][-1] + ' ' + data_dict[id][-2]
+        blocking_key = data_dict[id][3] + ' ' + data_dict[id][6]
         if not (blocking_key in blocking_dict):
             blocking_dict[blocking_key] = []
         blocking_dict[blocking_key].append(id)
@@ -93,7 +93,8 @@ class MatchingUtilities:
 
         for data_dict in [self.data_dict1, self.data_dict2]:
             for key in list(data_dict.keys()):
-                if not data_dict[key][-1] + ' ' + data_dict[key][-2] in potential_matches_keys:
+                blocking_key = data_dict[key][3] + ' ' + data_dict[key][6]
+                if not blocking_key in potential_matches_keys:
                     del data_dict[key]
 
     def get_potential_matches(self):
@@ -109,9 +110,16 @@ class MatchingUtilities:
         return df1, df2
 
     def get_matching_image_path_list(self):
-        image_list1 = list({'articleId': key, 'path': self.data_dict1[key][-2]}
+        image_list1 = list({'articleId': key,
+                            'path': self.data_dict1[key][4],
+                            'brand': self.data_dict1[key][3],
+                            'url': self.data_dict1[key][5]
+                            }
                            for key in list(self.data_dict1.keys()))
 
-        image_list2 = list({'articleId': key, 'path': self.data_dict2[key][-2]}
+        image_list2 = list({'articleId': key,
+                            'path': self.data_dict2[key][4],
+                            'brand': self.data_dict2[key][3],
+                            'url': self.data_dict2[key][5]}
                            for key in list(self.data_dict2.keys()))
         return image_list1, image_list2
