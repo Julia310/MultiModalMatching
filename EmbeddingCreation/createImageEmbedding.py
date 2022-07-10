@@ -8,6 +8,7 @@ from ImagePreprocessing.imagePreprocessing import get_and_preprocess_image
 from DatabaseManager.databaseConnection import MySQLManager
 import os
 from tqdm import tqdm
+import pickle
 
 
 class ImageEmbeddingGenerator:
@@ -27,7 +28,7 @@ class ImageEmbeddingGenerator:
 
     def get_image_embedding(self, img_dict):
         image = img_dict['image']
-        vector = self.model.predict(image, verbose=0)[0].dumps()
+        vector = pickle.dumps(self.model.predict(image, verbose=0)[0])
         return {'articleId': img_dict['articleId'], 'image': vector}
 
 
