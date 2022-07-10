@@ -2,6 +2,7 @@ import pandas as pd
 from TextPreprocessing.textCleaning import clean_columns
 import os
 from TextPreprocessing.addCategories import add_categories
+import csv
 
 
 def adjust_brand(input_string):
@@ -43,14 +44,14 @@ def url_to_file_name(url, dataset):
 
 def zalando_preprocessing():
     if not os.path.exists(os.path.abspath('./Datasets/clean_Zalando.csv')):
-        df = pd.read_csv(os.path.abspath('./Datasets/Zalando.csv'), error_bad_lines=False)
+        df = pd.read_csv(os.path.abspath('./Datasets/Zalando.csv'), error_bad_lines=False, verbose=True)
         df = df[["ArticleId", "ProductName", "Color", "Price", 'ImageUrl', "Brand"]]
         df.rename(columns={'ArticleId': 'id', 'ProductName': 'name', 'Color': 'variant', 'Price': 'price',
                            'ImageUrl': 'image', 'Brand': 'brand'}, inplace=True)
 
         df["name"] = df["name"].apply(lambda x: x.split(';')[0].split(' - ')[-2])
 
-        df = clean_columns(df, ['name', 'variant', 'price'])
+        df = clean_columns(df, ['name', 'variant'])
 
         df["brand"] = df["brand"].apply(lambda x: x.lower())
         df["brand"] = df["brand"].apply(lambda x: adjust_brand(x))
@@ -74,7 +75,7 @@ def tommyh_preprocessing():
         df = df[['MPN', 'name', 'variant', 'price', 'images']]
         df.rename(columns={'MPN': 'id', 'images': 'image'}, inplace=True)
 
-        df = clean_columns(df, ['name', 'variant', 'price'])
+        df = clean_columns(df, ['name', 'variant'])
         df = df.assign(brand="tommy hilfiger")
 
         df["variant"] = df["variant"].apply(lambda x: x.lower())
@@ -96,7 +97,7 @@ def gerryw_preprocessing():
         df = df[['MPN', 'name', 'variant', 'price', 'images']]
         df.rename(columns={'MPN': 'id', 'images': 'image'}, inplace=True)
 
-        df = clean_columns(df, ['name', 'variant', 'price'])
+        df = clean_columns(df, ['name', 'variant'])
         df = df.assign(brand="gerry weber")
 
         df["variant"] = df["variant"].apply(lambda x: x.lower())

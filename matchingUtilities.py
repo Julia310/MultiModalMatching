@@ -17,7 +17,7 @@ def create_data_dict(data_path_list):
 
 
 def load_data_to_dict(filename):
-    file = open(filename)
+    file = open(filename, encoding='utf8')
     csv_reader = csv.reader(file)
     next(csv_reader)
 
@@ -83,6 +83,7 @@ class MatchingUtilities:
             if key in self.block_dict1:
                 potential_matches[key] = list(itertools.product(self.block_dict1[key], self.block_dict2[key]))
                 cnt += len(potential_matches[key])
+                #print(len(potential_matches[key]))
 
         print('number of potential matches: ' + str(cnt))
 

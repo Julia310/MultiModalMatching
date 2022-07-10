@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5e2fbe45-85d4-4ecc-be09-8a604157b40c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="088eb83f-3d88-4be7-8f18-003d0bc3339d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ClassifierTraining/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ClassifierTraining/trainingPreparation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/hallo__)_patch/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/hallo____patch.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DatabaseManager/databaseConnection.py" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseManager/databaseConnection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datasets/clean_GerryWeber.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/clean_GerryWeber.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datasets/clean_TommyHilfiger.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/clean_TommyHilfiger.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datasets/clean_Zalando.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/clean_Zalando.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmbeddingCreation/createImageEmbedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmbeddingCreation/createImageEmbedding.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagePreprocessing/MissingImages/FBA3425001_200_main_$main$.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagePreprocessing/MissingImages/KB0KB06538_XNL_main_$main$.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagePreprocessing/imageBatchPreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImagePreprocessing/imageBatchPreprocessing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagePreprocessing/imagePreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImagePreprocessing/imagePreprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/clean_GerryWeber.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/clean_TommyHilfiger.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/clean_Zalando.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TextPreprocessing/CategoryTest/test_matches.py" beforeDir="false" afterPath="$PROJECT_DIR$/TextPreprocessing/CategoryTest/test_matches.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TextPreprocessing/addCategories.py" beforeDir="false" afterPath="$PROJECT_DIR$/TextPreprocessing/addCategories.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TextPreprocessing/textCleaning.py" beforeDir="false" afterPath="$PROJECT_DIR$/TextPreprocessing/textCleaning.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TextPreprocessing/textPreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/TextPreprocessing/textPreprocessing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/matchingUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/matchingUtilities.py" afterDir="false" />
@@ -33,33 +36,26 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2AqkCgWwLbfpogb8vssz93PT8d7" />
+  <component name="ProjectId" id="2BWQ5IpRnConEcwQyshfsHwM1zJ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/zwischenstand.patch" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/49151/MultiModalMatching/ClassifierTraining&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\JPete\Documents\Uni\BigDataPraktikum\MultiModalMatching\ImagePreprocessing" />
-      <recent name="C:\Users\JPete\Documents\Uni\BigDataPraktikum\MultiModalMatching\DatabaseManager" />
-      <recent name="C:\Users\JPete\Documents\Uni\BigDataPraktikum\MultiModalMatching\createEmbeddings" />
+      <recent name="C:\Users\49151\MultiModalMatching\ClassifierTraining" />
+      <recent name="C:\Users\49151\MultiModalMatching" />
     </key>
   </component>
   <component name="RunManager" selected="Python.productMatching">
@@ -70,12 +66,12 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\JPete\Documents\Uni\BigDataPraktikum\Test\venv\Scripts\python.exe" />
+      <option name="SDK_HOME" value="C:\Users\49151\AppData\Local\Programs\Python\Python310\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/DatabaseManager" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\JPete\Documents\Uni\BigDataPraktikum\MultiModalMatching\DatabaseManager\manageTables.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DatabaseManager/manageTables.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -91,7 +87,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\JPete\Documents\Uni\BigDataPraktikum\Test\venv\Scripts\python.exe" />
+      <option name="SDK_HOME" value="C:\Users\49151\AppData\Local\Programs\Python\Python310\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -112,7 +108,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\JPete\Documents\Uni\BigDataPraktikum\Test\venv\Scripts\python.exe" />
+      <option name="SDK_HOME" value="C:\Users\49151\AppData\Local\Programs\Python\Python310\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TextPreprocessing/CategoryTest" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -127,75 +123,34 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.test_matches" />
-      <item itemvalue="Python.productMatching" />
       <item itemvalue="Python.manageTables" />
+      <item itemvalue="Python.productMatching" />
+      <item itemvalue="Python.test_matches" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5e2fbe45-85d4-4ecc-be09-8a604157b40c" name="Changes" comment="" />
-      <created>1655744376277</created>
+      <changelist id="088eb83f-3d88-4be7-8f18-003d0bc3339d" name="Changes" comment="" />
+      <created>1657019176632</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1655744376277</updated>
+      <updated>1657019176632</updated>
     </task>
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py</url>
-          <line>63</line>
-          <option name="timeStamp" value="51" />
+          <url>file://$PROJECT_DIR$/ClassifierTraining/trainingPreparation.py</url>
+          <line>96</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/EmbeddingCreation/createImageEmbedding.py</url>
-          <line>57</line>
-          <option name="timeStamp" value="69" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ImagePreprocessing/imageBatchPreprocessing.py</url>
-          <line>15</line>
-          <option name="timeStamp" value="72" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/productMatching.py</url>
-          <line>36</line>
-          <option name="timeStamp" value="73" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/TextPreprocessing/CategoryTest/test_matches.py</url>
-          <line>22</line>
-          <option name="timeStamp" value="78" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/matchingUtilities.py</url>
-          <line>109</line>
-          <option name="timeStamp" value="87" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/matchingUtilities.py</url>
-          <line>123</line>
-          <option name="timeStamp" value="88" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/TextPreprocessing/textCleaning.py</url>
-          <line>48</line>
-          <option name="timeStamp" value="93" />
+          <url>file://$PROJECT_DIR$/ClassifierTraining/trainingPreparation.py</url>
+          <line>97</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -206,10 +161,5 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="values" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

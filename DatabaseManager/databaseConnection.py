@@ -1,5 +1,6 @@
 from DatabaseManager.peeweeModels import mysql_db, ZalandoEmbeddings, TommyHGerryWEmbeddings
 from tqdm import tqdm
+import pickle
 
 
 class MySQLManager:
@@ -25,3 +26,14 @@ class MySQLManager:
             query = self.table_dict[data_source].update(image=data_dict['image']). \
                 where(self.table_dict[data_source].articleId == data_dict['articleId'])
             query.execute()
+
+    def select_by_articleId(self, articleId, data_source):
+        product = self.table_dict[data_source].select(). \
+            where(articleId == self.table_dict[data_source].articleId).get()
+        embeddings = {
+            'name': pickle.loads(product.name),
+            'variant': pickle.loads(product.variant),
+            'price': pickle.loads(product.price),
+            'image': pickle.loads(product.image)
+        }
+        return embeddings

@@ -22,7 +22,14 @@ def test_matches(matches, df1, df2):
         cat1 = df1.loc[df1['id'] == rec[0]]['category'].tolist()[0]
         cat2 = df2.loc[df2['id'] == rec[1]]['category'].tolist()[0]
 
-        if not cat1 == cat2:
+        print('================================================')
+
+        print(df1.loc[df1['id'] == rec[0]]['name'])
+        print(df2.loc[df2['id'] == rec[1]]['name'])
+
+        print('================================================')
+
+        '''if not cat1 == cat2:
             print('================================================')
 
             print(df1.loc[df1['id'] == rec[0]])
@@ -31,7 +38,7 @@ def test_matches(matches, df1, df2):
             print('================================================')
             wrong_count += 1
         else:
-            correct_count += 1
+            correct_count += 1'''
 
     print('matches found: ' + str(correct_count))
     print('not found: ' + str(wrong_count))
@@ -40,7 +47,7 @@ def test_matches(matches, df1, df2):
 def main():
     df2 = pd.read_csv(gw)
     df_zal = pd.read_csv(zal)
-    test_matches(gw_zal, df_zal, df2)
+    #test_matches(gw_zal, df_zal, df2)
     df2 = pd.read_csv(th)
     test_matches(th_zal, df_zal, df2)
 

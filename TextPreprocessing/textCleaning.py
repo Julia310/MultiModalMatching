@@ -61,7 +61,7 @@ def replace_int(text):
 
 
 def remove_special_chars(text):
-    new_text = ''
+    #new_text = ''
     for i in text:
         if not (i.isalnum() or i == ' ' or i == '-'):
             #new_text += i

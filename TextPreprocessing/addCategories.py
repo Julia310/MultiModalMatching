@@ -50,8 +50,6 @@ def add_categories(df):
                 df.loc[row, 'category'] = "Jeans"'''
         elif ('tasche' in product or 'rucksack' in product or 'ranzen' in product or 'bag' in product or 'geldbörse' in product or 'satchel' in product or 'tote' in product
               or 'etui' in product or 'kulturbeutel' in product or 'weekender' in product or 'reisezubehör' in product or 'slingpack' in product or 'denim' in product):
-            if 'jeans slim fit' in product:
-                print(product)
             row = value[0]
             df.loc[row, 'category'] = 'Tasche'
         elif 'jeans' in product or 'pocket in siebenachtel' in product:
