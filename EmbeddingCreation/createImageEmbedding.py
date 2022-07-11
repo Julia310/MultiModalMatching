@@ -43,7 +43,7 @@ class ManageImageEmbeddings:
         self.image_embedding_generator = ImageEmbeddingGenerator()
         self.db_manager = MySQLManager()
 
-    def process_image_batches(self, image_batch_iterator, data_source, multi=True):
+    def process_image_batches(self, image_batch_iterator, data_source, multi=False):
         batch = image_batch_iterator.next_batch()
         while batch is not None:
             embeddings = []

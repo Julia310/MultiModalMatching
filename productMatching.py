@@ -22,7 +22,7 @@ def main():
     # ###### Text Embedding ######
     start = time()
     print('start creating text embeddings')
-    text_data_df1, text_data_df2 = m_utilities.get_matching_text_data_as_df(column_names=['name', 'variant', 'price'])
+    '''text_data_df1, text_data_df2 = m_utilities.get_matching_text_data_as_df(column_names=['name', 'variant', 'price'])
 
 
     text_to_embeddings_obj = ManageTextEmbeddings(
@@ -32,12 +32,12 @@ def main():
         'zal',
         'th_gw')
     text_to_embeddings_obj.generate_embeddings()
-    print('text embeddings created and saved in ' + str((time() - start) / 60.0) + ' minutes')
+    print('text embeddings created and saved in ' + str((time() - start) / 60.0) + ' minutes')'''
 
     # ###### Image Embedding ######
     print('start creating and saving image embeddings')
     start = time()
-    image_list1, image_list2 = m_utilities.get_matching_image_path_list()
+    image_list1, image_list2 = m_utilities.get_matching_image_path_list('zal', 'th_gw')
     images_to_embeddings = ManageImageEmbeddings(image_list1, image_list2, 'zal', 'th_gw')
     images_to_embeddings.generate_embeddings()
     print('image embeddings created and saved in ' + str((time() - start) / 60.0) + ' minutes')

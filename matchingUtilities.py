@@ -110,16 +110,18 @@ class MatchingUtilities:
 
         return df1, df2
 
-    def get_matching_image_path_list(self):
+    def get_matching_image_path_list(self, data_source1, data_source2):
         image_list1 = list({'articleId': key,
                             'path': self.data_dict1[key][4],
                             'brand': self.data_dict1[key][3],
-                            'url': self.data_dict1[key][5]}
+                            'url': self.data_dict1[key][5],
+                            'data_source': data_source1}
                            for key in list(self.data_dict1.keys()))
 
         image_list2 = list({'articleId': key,
                             'path': self.data_dict2[key][4],
                             'brand': self.data_dict2[key][3],
-                            'url': self.data_dict2[key][5]}
+                            'url': self.data_dict2[key][5],
+                            'data_source': data_source2}
                            for key in list(self.data_dict2.keys()))
         return image_list1, image_list2

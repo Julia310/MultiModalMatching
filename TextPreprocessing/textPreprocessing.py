@@ -23,15 +23,6 @@ def get_first_image_url(urls, dataset):
     return url
 
 
-def get_first_image_path(url, dataset):
-    if dataset == 'th':
-        return url_to_file_name(url, dataset)
-    elif dataset == 'z':
-        print()
-    else:
-        return url_to_file_name(url, dataset)
-
-
 def url_to_file_name(url, dataset):
     if dataset in ['th', 'z']:
         file_name = url.split('/')[-1]
@@ -44,7 +35,7 @@ def url_to_file_name(url, dataset):
 
 def zalando_preprocessing():
     if not os.path.exists(os.path.abspath('./Datasets/clean_Zalando.csv')):
-        df = pd.read_csv(os.path.abspath('./Datasets/Zalando.csv'), error_bad_lines=False, verbose=True)
+        df = pd.read_csv(os.path.abspath('./Datasets/Zalando.csv'), on_bad_lines='skip', verbose=False)
         df = df[["ArticleId", "ProductName", "Color", "Price", 'ImageUrl', "Brand"]]
         df.rename(columns={'ArticleId': 'id', 'ProductName': 'name', 'Color': 'variant', 'Price': 'price',
                            'ImageUrl': 'image', 'Brand': 'brand'}, inplace=True)
@@ -58,7 +49,7 @@ def zalando_preprocessing():
 
         df["variant"] = df["variant"].apply(lambda x: x.lower())
         df["image_url"] = df["image"].apply(lambda x: get_first_image_url(x, 'z'))
-        df["image_name"] = df["image"].apply(lambda x: get_first_image_path(x, 'z'))
+        df["image_name"] = df["image_url"].apply(lambda x: url_to_file_name(x, 'z'))
         df = df[["id", "name", "variant", "price", "brand", "image_name", "image_url"]]
 
         add_categories(df)
@@ -80,7 +71,7 @@ def tommyh_preprocessing():
 
         df["variant"] = df["variant"].apply(lambda x: x.lower())
         df["image_url"] = df["image"].apply(lambda x: get_first_image_url(x, 'th'))
-        df["image_name"] = df["image_url"].apply(lambda x: get_first_image_path(x, 'th'))
+        df["image_name"] = df["image_url"].apply(lambda x: url_to_file_name(x, 'th'))
         df = df[["id", "name", "variant", "price", "brand", "image_name", "image_url"]]
 
         add_categories(df)
@@ -102,7 +93,7 @@ def gerryw_preprocessing():
 
         df["variant"] = df["variant"].apply(lambda x: x.lower())
         df["image_url"] = df["image"].apply(lambda x: get_first_image_url(x, 'gw'))
-        df["image_name"] = df["image"].apply(lambda x: get_first_image_path(x, 'gw'))
+        df["image_name"] = df["image_url"].apply(lambda x: url_to_file_name(x, 'gw'))
         df = df[["id", "name", "variant", "price", "brand", "image_name", "image_url"]]
 
         add_categories(df)
@@ -119,8 +110,8 @@ def preprocess_text_data():
     zalando_preprocessing()
 
     clean_datasets = [
-        os.path.abspath('./Datasets/clean_TommyHilfiger.csv'),
         os.path.abspath('./Datasets/clean_GerryWeber.csv'),
+        os.path.abspath('./Datasets/clean_TommyHilfiger.csv'),
         os.path.abspath('./Datasets/clean_Zalando.csv')
     ]
 

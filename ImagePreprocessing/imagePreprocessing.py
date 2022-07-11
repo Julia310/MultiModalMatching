@@ -24,21 +24,25 @@ def download_image(img_url_dict):
     with urlopen(req) as response:
         img_bytes = response.read()
         arr = np.asarray(bytearray(img_bytes), dtype=np.uint8)
-        save_image_file_local(img_bytes, img_url_dict)
+        save_image_to_file_local(img_bytes, img_url_dict)
         img = cv2.imdecode(arr, -1)
         return {'articleId': img_url_dict['articleId'], 'image': img}
 
 
-def save_image_file_local(img_bytes, img_url_dict):
+def save_image_to_file_local(img_bytes, img_url_dict):
     image = Image.open(io.BytesIO(img_bytes))
-    file_path = os.path.join(get_base_path_by_image_brand(img_url_dict['brand']), img_url_dict['path']) + '.jpeg'
+
+    file_path = os.path.join(get_base_path_by_brand_and_data_source(img_url_dict['brand'], img_url_dict['data_source']), img_url_dict['path'])
+    if img_url_dict['brand'] == 'tommy hilfiger' and img_url_dict['data_source'] == 'th_gw':
+        file_path = file_path + '.jpeg'
     image.save(file_path)
-    print('==>image saved under' + file_path)
+    print('==>image saved under ' + file_path)
 
 
 def load_images_from_file_system(img_dict):
     brand = img_dict['brand']
-    base_path = get_base_path_by_image_brand(brand)
+    data_source = img_dict['data_source']
+    base_path = get_base_path_by_brand_and_data_source(brand, data_source)
 
     file_path = os.path.join(base_path, img_dict["path"])
     file_result = glob(file_path + '*')
@@ -59,13 +63,13 @@ def load_images_from_file_system(img_dict):
         return {'articleId': img_dict['articleId'], 'image': np_image}
 
 
-def get_base_path_by_image_brand(brand):
+def get_base_path_by_brand_and_data_source(brand, data_source):
     base_path = ""
-    if brand == 'gerry weber':
+    if brand == 'gerry weber' and data_source == 'th_gw':
         base_path = gerry_web_base_path
-    if brand == 'tommy hilfiger':
+    if brand == 'tommy hilfiger' and data_source == 'th_gw':
         base_path = tommy_h_base_path
-    if brand == 'zalando':
+    if data_source == 'zal':
         base_path = zalando_base_path
     return base_path
 
