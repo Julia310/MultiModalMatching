@@ -21,13 +21,15 @@ class MySQLManager:
                 query.execute()
                 print(str(idx_max) + ' rows inserted')
 
-    def update_image_by_articleId(self, batch, data_source):
+    def update_image_by_article_id(self, batch, data_source):
         for data_dict in tqdm(batch, desc='save image embeddings       '):
-            query = self.table_dict[data_source].update(image=data_dict['image']). \
+            query = self.table_dict[data_source].update(
+                image=data_dict['image'],
+            ). \
                 where(self.table_dict[data_source].articleId == data_dict['articleId'])
             query.execute()
 
-    def select_by_articleId(self, articleId, data_source):
+    def select_by_article_id(self, articleId, data_source):
         product = self.table_dict[data_source].select(). \
             where(articleId == self.table_dict[data_source].articleId).get()
         embeddings = {
@@ -37,3 +39,8 @@ class MySQLManager:
             'image': pickle.loads(product.image)
         }
         return embeddings
+
+
+    def recreate_tables(self):
+        mysql_db.drop_tables([ZalandoEmbeddings, TommyHGerryWEmbeddings])
+        mysql_db.create_tables([ZalandoEmbeddings, TommyHGerryWEmbeddings])

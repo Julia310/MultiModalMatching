@@ -10,6 +10,10 @@ class BaseModel(Model):
         database = mysql_db
 
 
+class LongTextField(TextField):
+    field_type = 'LONGTEXT'
+
+
 class ZalandoEmbeddings(BaseModel):
     articleId = CharField(unique=True)
     name = BlobField()

@@ -75,12 +75,13 @@ class ManageTextEmbeddings:
                     pbar.update()
                     embeddings = self.create_embeddings_for_row(indices[i], attributes, text_df.loc[[indices[i]]])
                     emb_list.append(embeddings)
-            #self.db_manager.save_many(emb_list, data_source)
+            self.db_manager.save_many(emb_list, data_source)
 
     def create_embeddings_for_row(self, index, columns, row):
         values = {'articleId': index}
         for col in columns:
-            embed_bytes = pickle.dumps(self.embedding_generator.create_text_embeddings(row[col][0])[0])
+            vector = self.embedding_generator.create_text_embeddings(row[col][0])[0]
+            embed_bytes = pickle.dumps(vector)
             values[col] = embed_bytes
         return values
 
