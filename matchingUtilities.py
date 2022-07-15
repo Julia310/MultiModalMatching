@@ -4,6 +4,18 @@ import pandas as pd
 
 
 def create_data_dict(data_path_list):
+    """
+    :param data_path_list:
+        option 1: holds only clean_Zalando.csv path as single element
+        option 2: includes clean_GerryWeber.csv and clean_TommyHilfiger.csv pathes
+    :return data_dict:
+        returns dictionary with
+            - data_dict keys correspond to article ids in case of Zalando, MPN otherwise
+            - data_dict values contain a list with relevant values for matching (name, variant, price, brand,
+              image_name, image_url, category)
+        if option 2:
+            MPNS are checked for being disjunct and merged to single dictionary containing GW and TH data
+    """
     data_dict = dict()
     data_dict_list = []
     for path in data_path_list:
@@ -39,6 +51,17 @@ def distinct_dict_keys_check(data_dict_list):
 
 
 def blocking(data_dict):
+    """
+    :param data_dict:
+    contains either Zalando or Tommy Hilfiger with Gerry Weber Data
+        - data_dict keys correspond to article ids in case of Zalando, MPN otherwise
+        - data_dict values contain a list with relevant values for matching
+    :return:
+    dictionary
+        - keys: blocking key, e.g. gerry weber oberteile
+        - values: corresponding article ids from Zalando or MPNs from Tommy Hilfiger/Gerry Weber
+    """
+
     blocking_dict = {}
     ids = list(data_dict.keys())
 

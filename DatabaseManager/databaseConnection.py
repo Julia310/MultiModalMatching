@@ -1,4 +1,5 @@
-from DatabaseManager.peeweeModels import mysql_db, ZalandoEmbeddings, TommyHGerryWEmbeddings
+from DatabaseManager.peeweeModels import mysql_db, ZalandoEmbeddings, TommyHGerryWEmbeddings, \
+    SimilaritiesTrain, SimilaritiesTest
 from tqdm import tqdm
 import pickle
 
@@ -8,6 +9,7 @@ class MySQLManager:
     def __init__(self):
         self.connection = mysql_db
         self.table_dict = {'zal': ZalandoEmbeddings, 'th_gw': TommyHGerryWEmbeddings}
+        self.similarity_table = {1: SimilaritiesTrain, 0: SimilaritiesTest}
         self.batch_size = 8000
 
     def save_many(self, values, data_source):
@@ -35,12 +37,31 @@ class MySQLManager:
         embeddings = {
             'name': pickle.loads(product.name),
             'variant': pickle.loads(product.variant),
-            'price': pickle.loads(product.price),
+            'price': product.price,
             'image': pickle.loads(product.image)
         }
         return embeddings
 
-
     def recreate_tables(self):
-        mysql_db.drop_tables([ZalandoEmbeddings, TommyHGerryWEmbeddings])
-        mysql_db.create_tables([ZalandoEmbeddings, TommyHGerryWEmbeddings])
+        self.connection.drop_tables([ZalandoEmbeddings, TommyHGerryWEmbeddings])
+        self.connection.create_tables([ZalandoEmbeddings, TommyHGerryWEmbeddings])
+
+    def recreate_similarities_tables(self):
+        self.connection.drop_tables([SimilaritiesTest, SimilaritiesTrain])
+        self.connection.create_tables([SimilaritiesTest, SimilaritiesTrain])
+
+    def save_similarities(self, values, training = 1):
+        with self.connection.atomic():
+            query = self.similarity_table[training].insert_many(values)
+            query.execute()
+
+    def select_similarities(self, training):
+        similarities = self.similarity_table[training].select()#.where(training == self.similarity_table.training_data)
+
+        X = []
+        y = []
+
+        for sim in similarities:
+            X.append([sim.name, sim.variant, sim.price, sim.image])
+            y.append(sim.y_true)
+        return X, y

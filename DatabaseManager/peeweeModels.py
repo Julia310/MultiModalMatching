@@ -18,7 +18,7 @@ class ZalandoEmbeddings(BaseModel):
     articleId = CharField(unique=True)
     name = BlobField()
     variant = BlobField()
-    price = BlobField()
+    price = CharField()
     image = BlobField()
 
 
@@ -26,5 +26,25 @@ class TommyHGerryWEmbeddings(BaseModel):
     articleId = CharField(unique=True)
     name = BlobField()
     variant = BlobField()
-    price = BlobField()
+    price = CharField()
     image = BlobField()
+
+
+class SimilaritiesTrain(BaseModel):
+    zal_id = CharField()
+    th_gw_id = CharField()
+    name = FloatField()
+    variant = FloatField()
+    price = FloatField()
+    image = FloatField()
+    y_true = IntegerField()
+
+
+class SimilaritiesTest(BaseModel):
+    zal_id = CharField()
+    th_gw_id = CharField()
+    name = FloatField()
+    variant = FloatField()
+    price = FloatField()
+    image = FloatField()
+    y_true = IntegerField()

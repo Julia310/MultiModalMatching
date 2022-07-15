@@ -40,7 +40,8 @@ class Comparison:
         # price similarity
         zal_price = zalando_embeddings['price']
         th_gw_price = th_gw_embeddings['price']
-        sim_vec.append(cosine_similarity(zal_price, th_gw_price))
+        price_similarity = min(float(zal_price), float(th_gw_price)) / max(float(zal_price), float(th_gw_price))
+        sim_vec.append(price_similarity)
 
         # image similarity
         zal_image = zalando_embeddings['image']

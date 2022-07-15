@@ -2,21 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef66222-2657-4141-94fb-8a3a61f75b24" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MultiModalMatching.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ClassifierTraining/trainClassifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClassifierTraining/trainClassifier.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DatabaseManager/databaseConnection.py" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseManager/databaseConnection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseManager/manageTables.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DatabaseManager/peeweeModels.py" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseManager/peeweeModels.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmbeddingCreation/createImageEmbedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmbeddingCreation/createImageEmbedding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/clean_GerryWeber.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/clean_TommyHilfiger.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Datasets/clean_Zalando.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagePreprocessing/imageBatchPreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImagePreprocessing/imageBatchPreprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TextPreprocessing/textCleaning.py" beforeDir="false" afterPath="$PROJECT_DIR$/TextPreprocessing/textCleaning.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/comparison.py" beforeDir="false" afterPath="$PROJECT_DIR$/comparison.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matchingUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/matchingUtilities.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/productMatching.py" beforeDir="false" afterPath="$PROJECT_DIR$/productMatching.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +35,9 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/pythonProject/MultiModalMatching/MultiModalMatching/MultiModalMatching/productMatching.py"
+    "last_opened_file_path": "D:/pythonProject/MultiModalMatching/MultiModalMatching/MultiModalMatching/productMatching.py",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vcs.patch.path": "D:/pythonProject/MultiModalMatching"
   }
 }]]></component>
   <component name="RunManager">
@@ -74,6 +72,110 @@
       <option name="presentableId" value="Default" />
       <updated>1657681516839</updated>
     </task>
+    <task id="LOCAL-00001" summary="create similarity vector">
+      <created>1657682164825</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1657682164825</updated>
+    </task>
+    <task id="LOCAL-00002" summary="patch">
+      <created>1657914225652</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1657914225652</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="create similarity vector" />
+    <MESSAGE value="patch" />
+    <option name="LAST_COMMIT_MESSAGE" value="patch" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ClassifierTraining/trainClassifier.py</url>
+          <line>64</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py</url>
+          <line>49</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py</url>
+          <line>54</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ClassifierTraining/trainClassifier.py</url>
+          <line>63</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/productMatching.py</url>
+          <line>55</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ClassifierTraining/trainClassifier.py</url>
+          <line>98</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ClassifierTraining/trainClassifier.py</url>
+          <line>88</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/DatabaseManager/databaseConnection.py</url>
+          <line>66</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/DatabaseManager/databaseConnection.py</url>
+          <line>58</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/productMatching.py</url>
+          <line>51</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/productMatching.py</url>
+          <line>52</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/productMatching.py</url>
+          <line>53</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

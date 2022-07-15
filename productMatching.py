@@ -49,7 +49,11 @@ def train_classifier(m_utilities):
     #cls_training = TrainingPreparation(potential_matches)
     print('train classifier')
     train_classifier_obj = TrainClassifier()
+    #train_classifier_obj.save_similarities(training=1)
+    #train_classifier_obj.save_similarities(training=0)
     train_classifier_obj.train_classifier()
+    #train_classifier_obj.train_classifier()
+    #train_classifier_obj.test_classifier()
 
 
 def recreate_database_tables():
