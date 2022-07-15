@@ -21,6 +21,11 @@ def replace_specific_letters(text):
 
 def replace_numerical_substrings(text):
     text = text.replace('1er', 'einer')
+    text = text.replace('2er', 'zweier')
+    text = text.replace('3er', 'dreier')
+    text = text.replace('4er', 'vierer')
+    text = text.replace('5er', 'fünfer')
+    text = text.replace('6er', 'sechser')
     text = text.replace('1/2', 'einhalb')
     text = text.replace('3/4', 'dreiviertel')
     text = text.replace('7/8', 'siebenachtel')
@@ -90,7 +95,7 @@ def text_stemming(text):
     return " ".join(words_filtered)
 
 
-def hasnumbers(inputString):
+def has_numbers(inputString):
     if any(char.isdigit() for char in inputString):
         print(inputString)
         return True
@@ -107,6 +112,7 @@ def replace_special_chars(text):
     text = text.replace('¸', '')
     return text
 
+
 def clean_variant(variant):
     variant = variant.lower()
     variant = variant.replace(' /', '/')
@@ -117,9 +123,9 @@ def clean_variant(variant):
 
 def clean_name(name):
     name = replace_numerical_substrings(name)
-    name = replace_year(name)
-    name = replace_float(name)
-    name = replace_int(name)
+    #name = replace_year(name)
+    #name = replace_float(name)
+    #name = replace_int(name)
     name = replace_special_chars(name)
     #hasnumbers(name)
     #name = remove_special_chars(name)
@@ -133,7 +139,6 @@ def clean_text(text, column):
         text = clean_variant(text)
     elif column == 'name':
         text = clean_name(text)
-
 
     return text
 
