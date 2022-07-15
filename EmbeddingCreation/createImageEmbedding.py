@@ -7,29 +7,51 @@ from multiprocessing.pool import ThreadPool
 from ImagePreprocessing.imagePreprocessing import get_and_preprocess_image
 from DatabaseManager.databaseConnection import MySQLManager
 import os
+import numpy as np
 from tqdm import tqdm
 import pickle
 
 
 class ImageEmbeddingGenerator:
+
     def __init__(self):
         self.image_size = [224, 224, 3]
         self.model = self.instantiate_model()
+        self.image_split_count = 5
 
     def instantiate_model(self):
-        if not os.path.exists(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'resnet.h5')):
-            resnet = ResNet50(input_shape=self.image_size, weights='imagenet', include_top=False)
-            output = Flatten()(resnet.output)
-            model = Model(inputs=resnet.input, outputs=output)
-            model.save(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'resnet.h5'), save_format='h5')
+        if not os.path.exists(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'resnet50.h5')):
+            #resnet = ResNet50(input_shape=self.image_size, weights='imagenet', include_top=False)
+            model = ResNet50(input_shape=self.image_size, weights='imagenet', include_top=False)
+            #output = Flatten()(resnet.output)
+            #model = Model(inputs=resnet.input, outputs=output)
+            model.save(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'resnet50.h5'), save_format='h5')
         else:
-            model = keras.models.load_model(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'resnet.h5'))
+            model = keras.models.load_model(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'resnet50.h5'), compile=False)
         return model
 
     def get_image_embedding(self, img_dict):
         image = img_dict['image']
-        vector = pickle.dumps(self.model.predict(image, verbose=0)[0])
-        return {'articleId': img_dict['articleId'], 'image': vector}
+        embedding = self.model.predict(image, verbose=0)[0]
+        embedding = np.mean(embedding, axis=0)
+        vector = np.mean(embedding, axis=0)
+        #print(vector)
+        img_byte_dict = {'articleId': img_dict['articleId'], 'image': pickle.dumps(vector)}
+        #split_vector_array = self.split_image_for_persisting(vector)
+        #split_cnt = 1
+
+        '''for split in split_vector_array:
+            split_dump = pickle.dumps(split)
+            img_byte_dict[f'image_{split_cnt}'] = split_dump
+            split_cnt += 1'''
+            # check_if_processable = pickle.loads(split_dump)
+
+
+        return img_byte_dict
+
+    def split_image_for_persisting(self, vector):
+        split_dict = np.array_split(vector, self.image_split_count)
+        return split_dict
 
 
 class ManageImageEmbeddings:
@@ -56,7 +78,7 @@ class ManageImageEmbeddings:
             for img_data in tqdm(img_batch, desc='create embeddings from batch'):
                 embeddings.append(self.image_embedding_generator.get_image_embedding(img_data))
 
-            self.db_manager.update_image_by_articleId(embeddings, data_source)
+            self.db_manager.update_image_by_article_id(embeddings, data_source)
             batch = image_batch_iterator.next_batch()
 
     def batch_for_system(self, batch):
