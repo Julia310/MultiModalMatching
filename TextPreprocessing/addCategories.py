@@ -1,4 +1,4 @@
-
+import logging
 
 def add_categories(df):
     for value in df['name'].iteritems():
@@ -59,4 +59,4 @@ def add_categories(df):
             row = value[0]
             df.loc[row, 'category'] = 'Sonstiges'
 
-    #print(df.groupby(['category']).count())
+    #logging.info(df.groupby(['category']).count())

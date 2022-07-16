@@ -1,5 +1,5 @@
 from math import *
-from DatabaseManager.databaseConnection import MySQLManager
+from DatabaseManager.dbContextManager import DbContextManager
 
 
 def square_rooted(x):
@@ -18,14 +18,14 @@ def jaccard_similarity(x, y):
     return intersection_cardinality / float(union_cardinality)
 
 
-class Comparison:
+class SimilarityGenerator:
     def __init__(self):
-        self.db_manager = MySQLManager()
+        self.db_manager = DbContextManager()
 
     def get_similarity_vector(self, articleIds):
         sim_vec = []
-        zalando_embeddings = self.db_manager.select_by_article_id(articleIds[0], 'zal')
-        th_gw_embeddings = self.db_manager.select_by_article_id(articleIds[1], 'th_gw')
+        zalando_embeddings = self.db_manager.select_zalando_by_article_id(articleIds[0])
+        th_gw_embeddings = self.db_manager.select_th_gw_by_article_id(articleIds[1])
 
         # name similarity
         zal_name = zalando_embeddings['name']

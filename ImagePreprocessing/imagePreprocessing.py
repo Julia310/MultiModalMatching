@@ -7,6 +7,7 @@ import io
 from PIL import Image
 from keras.applications.resnet import preprocess_input
 from glob import glob
+import logging
 
 #TODO: Adjust pathing to relative
 gerry_web_base_path = r'D:\pythonProject\MultiModalMatching\GerryWeber'
@@ -36,7 +37,7 @@ def save_image_to_file_local(img_bytes, img_url_dict):
     if img_url_dict['brand'] == 'tommy hilfiger' and img_url_dict['data_source'] == 'th_gw':
         file_path = file_path + '.jpeg'
     image.save(file_path)
-    print('==>image saved under ' + file_path)
+    logging.info('==>image saved under ' + file_path)
 
 
 def load_images_from_file_system(img_dict):
@@ -47,7 +48,7 @@ def load_images_from_file_system(img_dict):
     file_path = os.path.join(base_path, img_dict["path"])
     file_result = glob(file_path + '*')
     if len(file_result) == 0:
-        print('File not found - trying to download file : :' + img_dict["path"])
+        logging.info('File not found - trying to download file : :' + img_dict["path"])
         return download_image(img_dict)
     else:
         file = file_result[0]
@@ -55,8 +56,8 @@ def load_images_from_file_system(img_dict):
         try:
             rgb_image = Image.open(file).convert('RGB')
         except:
-            print('local file corrupt - DELETE THIS: ' + file_path)
-            print('ignoring file and trying to download')
+            logging.info('Local file corrupt - DELETE THIS: ' + file_path)
+            logging.info('Ignoring file and trying to download')
             return download_image(img_dict)
 
         np_image = np.array(rgb_image)[:, :, ::-1].copy()

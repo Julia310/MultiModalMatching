@@ -1,16 +1,16 @@
 from sklearn.ensemble import RandomForestClassifier
-from comparison import Comparison
+import logging
+from Util.similarityGenerator import SimilarityGenerator
 import os
 import csv
 from tqdm import tqdm
 from sklearn.metrics import confusion_matrix
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import roc_curve, roc_auc_score
-from sklearn.model_selection import RandomizedSearchCV
 from sklearn.model_selection import GridSearchCV
 import time
-from DatabaseManager.databaseConnection import MySQLManager
+from DatabaseManager.dbContextManager import DbContextManager
+import pickle
 
 
 def plot_roc_cur(fper, tper):
@@ -47,13 +47,13 @@ def get_random_forest_grid():
 class TrainClassifier:
     def __init__(self):
         self.classifier = RandomForestClassifier(random_state=42)
-        self.comparison = Comparison()
+        self.comparison = SimilarityGenerator()
         self.train_file = open(os.path.join(os.path.abspath('./ClassifierTraining'), 'train.csv'))
         self.csv_reader_train = csv.reader(self.train_file)
         self.test_file = open(os.path.join(os.path.abspath('./ClassifierTraining'), 'test.csv'))
         self.csv_reader_test = csv.reader(self.test_file)
         self.batchsize = 1000
-        self.db_manager = MySQLManager()
+        self.db_manager = DbContextManager()
 
     '''def train_classifier(self):
         X_train = []
@@ -97,7 +97,7 @@ class TrainClassifier:
             y_test.append(int(rows[i][-1]))
             X_test.append(self.comparison.get_similarity_vector(rows[i]))
         y_pred = self.classifier.predict(np.array(X_test))
-        print(confusion_matrix(np.array(y_test), np.array(y_pred)))
+        logging.info(confusion_matrix(np.array(y_test), np.array(y_pred)))
         #fper, tper, thresholds = roc_curve(np.array(y_test), y_pred)
         #plot_roc_cur(fper, tper)
 
@@ -107,13 +107,21 @@ class TrainClassifier:
         param_dict = get_random_forest_grid()
         np.random.seed(42)
         start = time.time()
-        cv_rf = GridSearchCV(self.classifier, cv=10,
+        cv_rf = GridSearchCV(self.classifier, cv=5,
                              param_grid=param_dict,
                              n_jobs=3, scoring='f1_macro')
 
         cv_rf.fit(X_train, y_train)
-        print('Best Parameters using grid search: \n',
+        logging.info('Best Parameters using grid search: \n',
               cv_rf.best_params_)
         end = time.time()
 
-        print('Time taken in grid search: {0: .2f}'.format(end - start))
+        logging.info('Time taken in grid search: {0: .2f}'.format(end - start))
+
+    def train_classifier_test(self):
+        X_train, y_train = self.get_similarities(training=1)
+        self.classifier.fit(X=np.array(X_train), y=np.array(y_train))
+        logging.info('Dumping random forest to file')
+        filename = os.path.abspath(r'./random_forest.sav')
+        with open(filename, 'wb') as file:
+            pickle.dump(self.classifier, file)

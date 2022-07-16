@@ -2,7 +2,6 @@ import pandas as pd
 from TextPreprocessing.textCleaning import clean_columns
 import os
 from TextPreprocessing.addCategories import add_categories
-import csv
 
 
 def adjust_brand(input_string):
@@ -53,10 +52,6 @@ def zalando_preprocessing():
         df = df[["id", "name", "variant", "price", "brand", "image_name", "image_url"]]
 
         add_categories(df)
-
-        #with pd.option_context('display.max_columns', None, ):
-          #  print(df)
-
         df.to_csv(os.path.abspath('./Datasets/clean_Zalando.csv'), index=False)
 
 
@@ -75,10 +70,6 @@ def tommyh_preprocessing():
         df = df[["id", "name", "variant", "price", "brand", "image_name", "image_url"]]
 
         add_categories(df)
-
-        #with pd.option_context('display.max_columns', None, ):
-            #print(df)
-
         df.to_csv(os.path.abspath('./Datasets/clean_TommyHilfiger.csv'), index=False)
 
 
@@ -97,10 +88,6 @@ def gerryw_preprocessing():
         df = df[["id", "name", "variant", "price", "brand", "image_name", "image_url"]]
 
         add_categories(df)
-
-        #with pd.option_context('display.max_columns', None, ):
-         #   print(df)
-
         df.to_csv(os.path.abspath('./Datasets/clean_GerryWeber.csv'), index=False)
 
 

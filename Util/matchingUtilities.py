@@ -1,7 +1,7 @@
 import csv
 import itertools
 import pandas as pd
-
+import logging
 
 def create_data_dict(data_path_list):
     """
@@ -106,9 +106,7 @@ class MatchingUtilities:
             if key in self.block_dict1:
                 potential_matches[key] = list(itertools.product(self.block_dict1[key], self.block_dict2[key]))
                 cnt += len(potential_matches[key])
-                #print(len(potential_matches[key]))
-
-        print('number of potential matches: ' + str(cnt))
+        logging.info(f'Number of potential matches:             {cnt}')
 
         return potential_matches
 
@@ -121,8 +119,12 @@ class MatchingUtilities:
                 if not blocking_key in potential_matches_keys:
                     del data_dict[key]
 
-    def get_potential_matches(self):
-        return self.potential_matches
+    def get_potential_matches_as_flat_list(self):
+        flat_list = list()
+        keys = list(self.potential_matches.keys())
+        for key in keys:
+            flat_list += self.potential_matches[key]
+        return flat_list
 
     def get_matching_text_data_as_df(self, column_names):
         df1 = pd.DataFrame.from_dict(self.data_dict1, orient='index')

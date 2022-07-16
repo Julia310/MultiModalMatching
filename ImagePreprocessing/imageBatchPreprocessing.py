@@ -1,3 +1,4 @@
+import logging
 
 class ImageBatchIterator:
     def __init__(self, image_path_list):
@@ -15,7 +16,7 @@ class ImageBatchIterator:
 
         image_path_sublist = self.image_path_list[self.idx:idx_max]
 
-        print('>>>>>>>>>  preprocessing images    ' + str(self.idx) + ' - ' + str(idx_max) + '  <<<<<<<<<')
+        logging.info('>>>>>>>>>>  Preprocessing images    ' + str(self.idx) + ' - ' + str(idx_max) + '  <<<<<<<<<<')
         self.idx = idx_max
         return image_path_sublist
 
