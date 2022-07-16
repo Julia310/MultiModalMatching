@@ -1,6 +1,6 @@
 from transformers import AutoTokenizer, AutoModel
 import torch
-from DatabaseManager.databaseConnection import MySQLManager
+from DatabaseManager.dbContextManager import DbContextManager
 import pickle
 from tqdm import tqdm
 
@@ -35,11 +35,13 @@ class ManageTextEmbeddings:
         self.embedding_generator = TransformersEmbeddingGenerator(model_name=model_name)
         self.data_source1 = data_source1
         self.data_source2 = data_source2
-        self.db_manager = MySQLManager()
+        self.db_manager = DbContextManager()
 
     def generate_embeddings(self):
         attributes = list(self.text_df1.columns)
-        text_df_list = [(self.text_df1, self.data_source1), (self.text_df2, self.data_source2)]
+        #FIXME
+        #text_df_list = [(self.text_df1, self.data_source1), (self.text_df2, self.data_source2)]
+        text_df_list = [(self.text_df2, self.data_source2)]
         for j in range(len(text_df_list)):
             (text_df, data_source) = text_df_list[j]
             emb_list = []

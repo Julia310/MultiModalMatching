@@ -40,7 +40,7 @@ def replace_year(text):
         year = year[0]
         year_str = num2words(int(year), to='year', lang='de')
         text = text.replace(str(year), year_str)
-        #print(text)
+        #logging.info(text)
     return text
 
 def replace_float(text):
@@ -51,7 +51,7 @@ def replace_float(text):
         num_str = num2words(float(num), lang='de')
         num = num.replace('.', ',')
         text = text.replace(num, num_str)
-        #print(text)
+        #logging.info(text)
     return text
 
 
@@ -61,7 +61,7 @@ def replace_int(text):
         num = str(numbers_list[i])
         num_str = num2words(int(num), lang='de')
         text = text.replace(num, num_str)
-        #print(text)
+        #logging.info(text)
     return text
 
 
@@ -70,7 +70,7 @@ def remove_special_chars(text):
     for i in text:
         if not (i.isalnum() or i == ' ' or i == '-'):
             #new_text += i
-            print(text)
+            logging.info(text)
             break
 
     #_RE_COMBINE_WHITESPACE = re.compile(r"\s+")
@@ -97,7 +97,7 @@ def text_stemming(text):
 
 def has_numbers(inputString):
     if any(char.isdigit() for char in inputString):
-        print(inputString)
+        logging.info(inputString)
         return True
     return False
 

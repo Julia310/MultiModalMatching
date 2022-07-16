@@ -10,10 +10,6 @@ class BaseModel(Model):
         database = mysql_db
 
 
-class LongTextField(TextField):
-    field_type = 'LONGTEXT'
-
-
 class ZalandoEmbeddings(BaseModel):
     articleId = CharField(unique=True)
     name = BlobField()
@@ -48,3 +44,9 @@ class SimilaritiesTest(BaseModel):
     price = FloatField()
     image = FloatField()
     y_true = IntegerField()
+
+
+class Matches(BaseModel):
+    zal_id = CharField()
+    th_gw_id = CharField()
+

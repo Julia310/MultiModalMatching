@@ -1,6 +1,7 @@
 import os
 import csv
 import pandas as pd
+import logging
 
 gw = os.path.abspath('../../Datasets/clean_GerryWeber.csv')
 th = os.path.abspath('../../Datasets/clean_TommyHilfiger.csv')
@@ -22,26 +23,26 @@ def test_matches(matches, df1, df2):
         cat1 = df1.loc[df1['id'] == rec[0]]['category'].tolist()[0]
         cat2 = df2.loc[df2['id'] == rec[1]]['category'].tolist()[0]
 
-        print('================================================')
+        logging.info('================================================')
 
-        print(df1.loc[df1['id'] == rec[0]]['name'])
-        print(df2.loc[df2['id'] == rec[1]]['name'])
+        logging.info(df1.loc[df1['id'] == rec[0]]['name'])
+        logging.info(df2.loc[df2['id'] == rec[1]]['name'])
 
-        print('================================================')
+        logging.info('================================================')
 
         '''if not cat1 == cat2:
-            print('================================================')
+            logging.info('================================================')
 
-            print(df1.loc[df1['id'] == rec[0]])
-            print(df2.loc[df2['id'] == rec[1]])
+            logging.info(df1.loc[df1['id'] == rec[0]])
+            logging.info(df2.loc[df2['id'] == rec[1]])
 
-            print('================================================')
+            logging.info('================================================')
             wrong_count += 1
         else:
             correct_count += 1'''
 
-    print('matches found: ' + str(correct_count))
-    print('not found: ' + str(wrong_count))
+    logging.info('Matches found: ' + str(correct_count))
+    logging.info('Not found: ' + str(wrong_count))
 
 
 def main():
