@@ -3,11 +3,16 @@ from keras.applications.resnet import ResNet50
 from ImagePreprocessing.imageBatchPreprocessing import ImageBatchIterator
 from multiprocessing.pool import ThreadPool
 from ImagePreprocessing.imagePreprocessing import get_and_preprocess_image
-from DatabaseManager.dbContextManager import DbContextManager
 import os
 import numpy as np
 from tqdm import tqdm
 import pickle
+from dataAlias import ZALANDO_TABLE_ALIAS, TOMMYH_GERRYW_TABLE_ALIAS
+from sys import platform
+
+MODEL_PATH = os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'resnet50.h5')
+if 'linux' in platform:
+    MODEL_PATH = os.path.join(os.path.abspath('./MultiModalMatching/EmbeddingCreation'), 'Model', 'resnet50.h5')
 
 
 class ImageEmbeddingGenerator:
@@ -18,11 +23,11 @@ class ImageEmbeddingGenerator:
         self.image_split_count = 5
 
     def instantiate_model(self):
-        if not os.path.exists(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'resnet50.h5')):
+        if not os.path.exists(MODEL_PATH):
             model = ResNet50(input_shape=self.image_size, weights='imagenet', include_top=False)
-            model.save(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'resnet50.h5'), save_format='h5')
+            model.save(MODEL_PATH, save_format='h5')
         else:
-            model = keras.models.load_model(os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'resnet50.h5'), compile=False)
+            model = keras.models.load_model(MODEL_PATH, compile=False)
         return model
 
     def get_image_embedding(self, img_dict):
@@ -39,17 +44,17 @@ class ImageEmbeddingGenerator:
 
 
 class ManageImageEmbeddings:
-    def __init__(self, image_list1, image_list2, data_source1, data_source2):
+    def __init__(self, image_list1, image_list2, data_alias1, data_alias2, db_embedding_manager):
         self.image_batch_iterator1 = ImageBatchIterator(image_list1)
         self.image_batch_iterator2 = ImageBatchIterator(image_list2)
-        self.data_source1 = data_source1
-        self.data_source2 = data_source2
+        self.data_alias1 = data_alias1
+        self.data_alias2 = data_alias2
         self.processes = 10
         self.pool = ThreadPool(self.processes)
         self.image_embedding_generator = ImageEmbeddingGenerator()
-        self.db_manager = DbContextManager()
+        self.db_manager = db_embedding_manager
 
-    def process_image_batches(self, image_batch_iterator, data_source, multi=False):
+    def process_image_batches(self, image_batch_iterator, data_alias, multi=False):
         batch = image_batch_iterator.next_batch()
         while batch is not None:
             embeddings = []
@@ -62,7 +67,7 @@ class ManageImageEmbeddings:
             for img_data in tqdm(img_batch, desc='Create embeddings from batch'):
                 embeddings.append(self.image_embedding_generator.get_image_embedding(img_data))
 
-            self.db_manager.update_image_by_article_id(embeddings, data_source)
+            self.save_image_embeddings(embeddings, data_alias)
             batch = image_batch_iterator.next_batch()
 
     def preprocess_image_batch(self, batch):
@@ -74,6 +79,11 @@ class ManageImageEmbeddings:
         return image_list
 
     def generate_embeddings(self):
-        #FIXME
-        #self.process_image_batches(self.image_batch_iterator1, self.data_source1)
-        self.process_image_batches(self.image_batch_iterator2, self.data_source2)
+        self.process_image_batches(self.image_batch_iterator1, self.data_alias1)
+        self.process_image_batches(self.image_batch_iterator2, self.data_alias2)
+
+    def save_image_embeddings(self, embeddings, data_alias):
+        if data_alias == ZALANDO_TABLE_ALIAS:
+            self.db_manager.update_zalando_image_by_article_id(embeddings)
+        else:
+            self.db_manager.update_th_gw_image_by_article_id(embeddings)

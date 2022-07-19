@@ -1,19 +1,18 @@
 from tqdm import tqdm
 from Util.similarityGenerator import SimilarityGenerator as SimGen
-from DatabaseManager.dbContextManager import DbContextManager
 from Classification.classifier import Classifier
 import logging
 
 
 class ClassificationWorker:
 
-    def __init__(self, matching_utils):
+    def __init__(self, matching_utils, db_matches_context_manager, db_embeddings_context_manager):
         self.matching_utils = matching_utils
         self.potential_matches_flat = self.matching_utils.get_potential_matches_as_flat_list()
         self.classified_matches = list()
         self.classifier = Classifier()
-        self.context = DbContextManager()
-        self.similarity_generator = SimGen()
+        self.context = db_matches_context_manager
+        self.similarity_generator = SimGen(db_embeddings_context_manager)
 
     def get_zalando_id_from_matches(self, index):
         return self.potential_matches_flat[index][0]

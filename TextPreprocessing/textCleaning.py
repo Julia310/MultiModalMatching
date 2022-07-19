@@ -1,14 +1,13 @@
 import pandas as pd
 import numpy as np
+#from nltk.corpus import stopwords
 import re
-from nltk.corpus import stopwords
-import re
-from nltk.stem.snowball import SnowballStemmer
-from nltk.tokenize import word_tokenize
+#from nltk.stem.snowball import SnowballStemmer
+#from nltk.tokenize import word_tokenize
 from num2words import num2words
-
-stemmer = SnowballStemmer("german")
-stop_words = set(stopwords.words("german"))
+import logging
+#stemmer = SnowballStemmer("german")
+#stop_words = set(stopwords.words("german"))
 
 
 def replace_specific_letters(text):
@@ -79,7 +78,7 @@ def remove_special_chars(text):
     return text
 
 
-def stop_word_removal(text):
+'''def stop_word_removal(text):
     german_stop_words = stopwords.words('german')
     token = text.split()
     return ' '.join([w for w in token if not w in german_stop_words])
@@ -92,7 +91,7 @@ def text_stemming(text):
     words_filtered = [
         stemmer.stem(word) for word in words_tokens_lower
     ]
-    return " ".join(words_filtered)
+    return " ".join(words_filtered)'''
 
 
 def has_numbers(inputString):

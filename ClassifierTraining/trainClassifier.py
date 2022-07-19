@@ -9,7 +9,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import GridSearchCV
 import time
-from DatabaseManager.dbContextManager import DbContextManager
 import pickle
 
 
@@ -45,15 +44,15 @@ def get_random_forest_grid():
 
 
 class TrainClassifier:
-    def __init__(self):
+    def __init__(self, db_context_manager, db_embeddings_context_manager):
         self.classifier = RandomForestClassifier(random_state=42)
-        self.comparison = SimilarityGenerator()
+        self.comparison = SimilarityGenerator(db_embeddings_context_manager)
         self.train_file = open(os.path.join(os.path.abspath('./ClassifierTraining'), 'train.csv'))
         self.csv_reader_train = csv.reader(self.train_file)
         self.test_file = open(os.path.join(os.path.abspath('./ClassifierTraining'), 'test.csv'))
         self.csv_reader_test = csv.reader(self.test_file)
         self.batchsize = 1000
-        self.db_manager = DbContextManager()
+        self.db_manager = db_context_manager
 
     '''def train_classifier(self):
         X_train = []

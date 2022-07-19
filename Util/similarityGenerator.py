@@ -1,5 +1,4 @@
 from math import *
-from DatabaseManager.dbContextManager import DbContextManager
 
 
 def square_rooted(x):
@@ -19,8 +18,8 @@ def jaccard_similarity(x, y):
 
 
 class SimilarityGenerator:
-    def __init__(self):
-        self.db_manager = DbContextManager()
+    def __init__(self, db_embeddings_context_manager):
+        self.db_manager = db_embeddings_context_manager
 
     def get_similarity_vector(self, articleIds):
         sim_vec = []

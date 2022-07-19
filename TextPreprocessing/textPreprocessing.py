@@ -2,6 +2,22 @@ import pandas as pd
 from TextPreprocessing.textCleaning import clean_columns
 import os
 from TextPreprocessing.addCategories import add_categories
+from sys import platform
+
+
+clean_zalando_path = os.path.abspath('./Datasets/clean_Zalando.csv')
+zalando_path = os.path.abspath('./Datasets/Zalando.csv')
+clean_tommyh_path = os.path.abspath('./Datasets/clean_TommyHilfiger.csv')
+tommyh_path = os.path.abspath('./Datasets/TommyHilfiger.csv')
+clean_gerryw_path = os.path.abspath('./Datasets/clean_GerryWeber.csv')
+gerryw_path = os.path.abspath('./Datasets/GerryWeber.csv')
+if 'linux' in platform:
+    clean_zalando_path = os.path.abspath('./MultiModalMatching/Datasets/clean_Zalando.csv')
+    zalando_path = os.path.abspath('./MultiModalMatching/Datasets/Zalando.csv')
+    clean_tommyh_path = os.path.abspath('./MultiModalMatching/Datasets/clean_TommyHilfiger.csv')
+    tommyh_path = os.path.abspath('./MultiModalMatching/Datasets/TommyHilfiger.csv')
+    clean_gerryw_path = os.path.abspath('./MultiModalMatching/Datasets/clean_GerryWeber.csv')
+    gerryw_path = os.path.abspath('./MultiModalMatching/Datasets/GerryWeber.csv')
 
 
 def adjust_brand(input_string):
@@ -33,8 +49,9 @@ def url_to_file_name(url, dataset):
 
 
 def zalando_preprocessing():
-    if not os.path.exists(os.path.abspath('./Datasets/clean_Zalando.csv')):
-        df = pd.read_csv(os.path.abspath('./Datasets/Zalando.csv'), on_bad_lines='skip', verbose=False)
+    if not os.path.exists(clean_zalando_path):
+        #df = pd.read_csv(zalando_path, on_bad_lines='skip', verbose=False)
+        df = pd.read_csv(zalando_path, error_bad_lines=False, verbose=False)
         df = df[["ArticleId", "ProductName", "Color", "Price", 'ImageUrl', "Brand"]]
         df.rename(columns={'ArticleId': 'id', 'ProductName': 'name', 'Color': 'variant', 'Price': 'price',
                            'ImageUrl': 'image', 'Brand': 'brand'}, inplace=True)
@@ -52,12 +69,12 @@ def zalando_preprocessing():
         df = df[["id", "name", "variant", "price", "brand", "image_name", "image_url"]]
 
         add_categories(df)
-        df.to_csv(os.path.abspath('./Datasets/clean_Zalando.csv'), index=False)
+        df.to_csv(clean_zalando_path, index=False)
 
 
 def tommyh_preprocessing():
-    if not os.path.exists(os.path.abspath('./Datasets/clean_TommyHilfiger.csv')):
-        df = pd.read_csv(os.path.abspath('./Datasets/TommyHilfiger.csv'))
+    if not os.path.exists(clean_tommyh_path):
+        df = pd.read_csv(tommyh_path)
         df = df[['MPN', 'name', 'variant', 'price', 'images']]
         df.rename(columns={'MPN': 'id', 'images': 'image'}, inplace=True)
 
@@ -70,12 +87,12 @@ def tommyh_preprocessing():
         df = df[["id", "name", "variant", "price", "brand", "image_name", "image_url"]]
 
         add_categories(df)
-        df.to_csv(os.path.abspath('./Datasets/clean_TommyHilfiger.csv'), index=False)
+        df.to_csv(clean_tommyh_path, index=False)
 
 
 def gerryw_preprocessing():
-    if not os.path.exists(os.path.abspath('./Datasets/clean_GerryWeber.csv')):
-        df = pd.read_csv(os.path.abspath('./Datasets/GerryWeber.csv'))
+    if not os.path.exists(clean_gerryw_path):
+        df = pd.read_csv(gerryw_path)
         df = df[['MPN', 'name', 'variant', 'price', 'images']]
         df.rename(columns={'MPN': 'id', 'images': 'image'}, inplace=True)
 
@@ -88,7 +105,7 @@ def gerryw_preprocessing():
         df = df[["id", "name", "variant", "price", "brand", "image_name", "image_url"]]
 
         add_categories(df)
-        df.to_csv(os.path.abspath('./Datasets/clean_GerryWeber.csv'), index=False)
+        df.to_csv(clean_gerryw_path, index=False)
 
 
 def preprocess_text_data():
@@ -97,9 +114,9 @@ def preprocess_text_data():
     zalando_preprocessing()
 
     clean_datasets = [
-        os.path.abspath('./Datasets/clean_GerryWeber.csv'),
-        os.path.abspath('./Datasets/clean_TommyHilfiger.csv'),
-        os.path.abspath('./Datasets/clean_Zalando.csv')
+        clean_gerryw_path,
+        clean_tommyh_path,
+        clean_zalando_path
     ]
 
     return clean_datasets
