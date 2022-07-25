@@ -13,7 +13,12 @@ from Classification.classificationWorker import ClassificationWorker
 from Database.DbContextManager.dbEmbeddingContextManager import DbEmbeddingContextManager
 from Database.DbContextManager.dbTrainDataContextManager import DbTrainDataContextManager
 from Database.DbContextManager.dbMatchingResultsManager import DbMatchesContextManager
+from Database.DbContextManager.dbUtilityContextManager import DbUtilityContextManager
+from Util.similarityGenerator import SimilarityGenerator
 from dataAlias import ZALANDO_TABLE_ALIAS, TOMMYH_GERRYW_TABLE_ALIAS
+from Util.evaluationUtilities import EvaluationUtilites
+from Util.classificationUtilities import ClassificationUtilities
+from Classification.classification import Classification
 import logging
 
 
@@ -26,7 +31,8 @@ def create_text_embedding(m_utilities, db_embedding_manager):
     logging.info('Start creating text embeddings')
     text_data_df1, text_data_df2 = m_utilities.get_matching_text_data_as_df(column_names=['name', 'variant', 'price'])
     text_to_embeddings_obj = ManageTextEmbeddings(
-        'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2',
+        #'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2',
+        'sentence-transformers/distiluse-base-multilingual-cased-v1',
         text_data_df1,
         text_data_df2,
         ZALANDO_TABLE_ALIAS,
@@ -63,9 +69,10 @@ def preprocess_data():
     return m_utilities
 
 
-def recreate_database_tables(db_embedding_manager, db_matches_manager):
+def recreate_database_tables(db_embedding_manager, db_matches_manager, db_utility_manager):
     db_embedding_manager.recreate_tables()
-    db_matches_manager.recreate_table()
+    db_matches_manager.recreate_tables()
+    db_utility_manager.recreate_tables()
 
 
 def config_logger():
@@ -82,21 +89,28 @@ def train_classifier(m_utilities, db_train_data_manager, db_embedding_manager):
 def main():
     # 0 Main utilities
     config_logger()
+    m_utilities = preprocess_data()
 
     db_embedding_manager = DbEmbeddingContextManager()
     db_matches_manager = DbMatchesContextManager()
-
-
-    #recreate_database_tables(db_embedding_manager, db_matches_manager)
+    db_utility_manager = DbUtilityContextManager()
 
     # 1.1 Applying data schema
     # ##### DROP AND RECREATE TABLES #####
-    m_utilities = preprocess_data()
+    recreate_database_tables(db_embedding_manager, db_matches_manager, db_utility_manager)
+
 
     # ##### CREATING EMBEDDINGS #####
-    #create_text_embedding(m_utilities, db_embedding_manager)
+    create_text_embedding(m_utilities, db_embedding_manager)
     create_image_embedding(m_utilities, db_embedding_manager)
     # ##### CREATING EMBEDDINGS #####
+
+    sim_generator = SimilarityGenerator(db_embedding_manager)
+    classification = Classification(db_matches_manager)
+    classification_utilities = ClassificationUtilities(db_utility_manager, sim_generator, m_utilities, classification)
+    classification_utilities.save_similarities()
+    #evaluation_utilities = EvaluationUtilites(db_utility_manager)
+    #evaluation_utilities.save_matches_to_db()
 
     # ##### TRAINING THE CLASSIFIER #####
     #db_train_data_manager = DbTrainDataContextManager()

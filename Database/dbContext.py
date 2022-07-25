@@ -4,10 +4,12 @@ from playhouse.shortcuts import ReconnectMixin
 from playhouse.mysql_ext import MariaDBConnectorDatabase
 
 
-# mysql_db = MySQLDatabase('MatchingData', user='root', password='asdfghjkl.54321', host='127.0.0.1', port=3306)
 
 
-class ReconnectMySQLDatabase(ReconnectMixin, MySQLDatabase, ABC):
+mysql_db = MySQLDatabase('MatchingData', user='root', password='asdfghjkl.54321', host='127.0.0.1', port=3306)
+
+
+'''class ReconnectMySQLDatabase(ReconnectMixin, MySQLDatabase, ABC):
     pass
 
 
@@ -22,4 +24,4 @@ def before_execute_any_query():
 
 # after execute all queries and complete the action
 def after_execute_query():
-    mysql_db.close()
+    mysql_db.close()'''

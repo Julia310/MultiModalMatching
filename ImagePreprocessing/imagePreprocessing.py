@@ -41,7 +41,7 @@ def save_image_to_file_local(img_bytes, img_url_dict):
     file_path = os.path.join(get_base_path_by_brand_and_data_alias(img_url_dict['brand'], img_url_dict['data_alias']),
                              img_url_dict['path'])
     if img_url_dict['brand'] == 'tommy hilfiger' and img_url_dict['data_alias'] == TOMMYH_GERRYW_TABLE_ALIAS:
-        file_path = file_path + '.jpeg'
+        file_path = file_path + '.jpg'
     image.save(file_path)
     logging.info('==>image saved under ' + file_path)
 
@@ -58,13 +58,6 @@ def load_images_from_file_system(img_dict):
         return download_image(img_dict)
     else:
         file = file_result[0]
-        if not ('.jpg' in file or '.jpeg' in file):
-            os.rename(file, file + '.jpg')
-            print('rename file: ' + file)
-            file = file + '.jpg'
-            if os.path.isfile(file):
-                print('rename successful')
-
         try:
             # rgb_image = Image.open(file).convert('RGB')
             # np_image = np.array(rgb_image)[:, :, ::-1].copy()

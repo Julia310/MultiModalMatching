@@ -23,14 +23,7 @@ def test_matches(matches, df1, df2):
         cat1 = df1.loc[df1['id'] == rec[0]]['category'].tolist()[0]
         cat2 = df2.loc[df2['id'] == rec[1]]['category'].tolist()[0]
 
-        logging.info('================================================')
-
-        logging.info(df1.loc[df1['id'] == rec[0]]['name'])
-        logging.info(df2.loc[df2['id'] == rec[1]]['name'])
-
-        logging.info('================================================')
-
-        '''if not cat1 == cat2:
+        if not cat1 == cat2:
             logging.info('================================================')
 
             logging.info(df1.loc[df1['id'] == rec[0]])
@@ -39,7 +32,7 @@ def test_matches(matches, df1, df2):
             logging.info('================================================')
             wrong_count += 1
         else:
-            correct_count += 1'''
+            correct_count += 1
 
     logging.info('Matches found: ' + str(correct_count))
     logging.info('Not found: ' + str(wrong_count))
