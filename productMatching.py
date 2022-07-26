@@ -24,6 +24,7 @@ import logging
 
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+os.environ["TOKENIZERS_PARALLELISM"] = "true"
 
 
 def create_text_embedding(m_utilities, db_embedding_manager):
@@ -110,7 +111,7 @@ def main():
     #classification = Classification(db_matches_manager)
     #classification_utilities = ClassificationUtilities(db_utility_manager, sim_generator, m_utilities, classification)
     #classification_utilities.save_similarities()
-    true_matches_to_db = TrueMatchesToDb(db_utility_manager)
+    true_matches_to_db = TrueMatchesToDb(db_matches_manager)
     true_matches_to_db.save_matches_to_db()
 
     classification = ParallelClassification(m_utilities)

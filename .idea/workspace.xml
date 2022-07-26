@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef66222-2657-4141-94fb-8a3a61f75b24" name="Changes" comment="adjust true matches path for cluster">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classification/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classification/classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/DbContextManager/dbMatchingResultsManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Database/DbContextManager/dbMatchingResultsManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/DbContextManager/dbUtilityContextManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Database/DbContextManager/dbUtilityContextManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/Models/matchingResultsModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Models/matchingResultsModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/Models/utilityModels.py" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Models/utilityModels.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Util/classificationUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/classificationUtilities.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Util/evaluationUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/trueMatchesToDb.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Util/similarityGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/similarityGenerator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmbeddingCreation/createImageEmbedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmbeddingCreation/createImageEmbedding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/productMatching.py" beforeDir="false" afterPath="$PROJECT_DIR$/productMatching.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -131,12 +123,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py</url>
-          <line>49</line>
+          <line>50</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py</url>
-          <line>54</line>
+          <line>55</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -146,7 +138,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/productMatching.py</url>
-          <line>62</line>
+          <line>63</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -171,17 +163,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/productMatching.py</url>
-          <line>58</line>
+          <line>59</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/productMatching.py</url>
-          <line>59</line>
+          <line>60</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/productMatching.py</url>
-          <line>60</line>
+          <line>61</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

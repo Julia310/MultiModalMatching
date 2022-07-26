@@ -61,11 +61,14 @@ class ManageImageEmbeddings:
 
             if multi:
                 img_batch = self.pool.map(get_and_preprocess_image, batch)
+                self.pool.join()
+                embeddings = self.pool.map(self.image_embedding_generator.get_image_embedding, img_batch)
+                self.pool.join()
             else:
                 img_batch = self.preprocess_image_batch(batch)
 
-            for img_data in tqdm(img_batch, desc='Create embeddings from batch'):
-                embeddings.append(self.image_embedding_generator.get_image_embedding(img_data))
+                for img_data in tqdm(img_batch, desc='Create embeddings from batch'):
+                    embeddings.append(self.image_embedding_generator.get_image_embedding(img_data))
 
             self.save_image_embeddings(embeddings, data_alias)
             batch = image_batch_iterator.next_batch()
@@ -79,8 +82,8 @@ class ManageImageEmbeddings:
         return image_list
 
     def generate_embeddings(self):
-        self.process_image_batches(self.image_batch_iterator1, self.data_alias1)
-        self.process_image_batches(self.image_batch_iterator2, self.data_alias2)
+        self.process_image_batches(self.image_batch_iterator1, self.data_alias1, multi=True)
+        self.process_image_batches(self.image_batch_iterator2, self.data_alias2, multi=True)
 
     def save_image_embeddings(self, embeddings, data_alias):
         if data_alias == ZALANDO_TABLE_ALIAS:
