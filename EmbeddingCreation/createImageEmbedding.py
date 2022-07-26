@@ -61,9 +61,7 @@ class ManageImageEmbeddings:
 
             if multi:
                 img_batch = self.pool.map(get_and_preprocess_image, batch)
-                self.pool.join()
                 embeddings = self.pool.map(self.image_embedding_generator.get_image_embedding, img_batch)
-                self.pool.join()
             else:
                 img_batch = self.preprocess_image_batch(batch)
 
