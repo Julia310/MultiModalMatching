@@ -21,29 +21,30 @@ class SimilarityGenerator:
     def __init__(self, db_embeddings_context_manager):
         self.db_manager = db_embeddings_context_manager
 
-    def get_similarity_vector(self, articleIds):
-        sim_vec = []
-        zalando_embeddings = self.db_manager.select_zalando_by_article_id(articleIds[0])
-        th_gw_embeddings = self.db_manager.select_th_gw_by_article_id(articleIds[1])
+    def get_similarity_vector(self, article_ids):
+        sim_vec = {'zal_id': article_ids[0],
+                   'th_gw_id':article_ids[1]}
+        zalando_embeddings = self.db_manager.select_zalando_by_article_id(article_ids[0])
+        th_gw_embeddings = self.db_manager.select_th_gw_by_article_id(article_ids[1])
 
         # name similarity
         zal_name = zalando_embeddings['name']
         th_gw_name = th_gw_embeddings['name']
-        sim_vec.append(cosine_similarity(zal_name, th_gw_name))
+        sim_vec['name'] = cosine_similarity(zal_name, th_gw_name)
 
         # variant similarity
         zal_variant = zalando_embeddings['variant']
         th_gw_variant = th_gw_embeddings['variant']
-        sim_vec.append(cosine_similarity(zal_variant, th_gw_variant))
+        sim_vec['variant'] = cosine_similarity(zal_variant, th_gw_variant)
 
         # price similarity
         zal_price = zalando_embeddings['price']
         th_gw_price = th_gw_embeddings['price']
         price_similarity = min(float(zal_price), float(th_gw_price)) / max(float(zal_price), float(th_gw_price))
-        sim_vec.append(price_similarity)
+        sim_vec['price'] = price_similarity
 
         # image similarity
         zal_image = zalando_embeddings['image']
         th_gw_image = th_gw_embeddings['image']
-        sim_vec.append(cosine_similarity(zal_image, th_gw_image))
+        sim_vec['image'] = cosine_similarity(zal_image, th_gw_image)
         return sim_vec

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aef66222-2657-4141-94fb-8a3a61f75b24" name="Changes" comment="">
+    <list default="true" id="aef66222-2657-4141-94fb-8a3a61f75b24" name="Changes" comment="adjust true matches path for cluster">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClassifierTraining/trainClassifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClassifierTraining/trainClassifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseManager/databaseConnection.py" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseManager/databaseConnection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseManager/peeweeModels.py" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseManager/peeweeModels.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datasets/clean_GerryWeber.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datasets/clean_TommyHilfiger.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datasets/clean_Zalando.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TextPreprocessing/textCleaning.py" beforeDir="false" afterPath="$PROJECT_DIR$/TextPreprocessing/textCleaning.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comparison.py" beforeDir="false" afterPath="$PROJECT_DIR$/comparison.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matchingUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/matchingUtilities.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classification/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classification/classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/DbContextManager/dbMatchingResultsManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Database/DbContextManager/dbMatchingResultsManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/DbContextManager/dbUtilityContextManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Database/DbContextManager/dbUtilityContextManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Models/matchingResultsModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Models/matchingResultsModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Models/utilityModels.py" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Models/utilityModels.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Util/classificationUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/classificationUtilities.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Util/evaluationUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/trueMatchesToDb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Util/similarityGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/similarityGenerator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/productMatching.py" beforeDir="false" afterPath="$PROJECT_DIR$/productMatching.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,15 +31,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/pythonProject/MultiModalMatching/MultiModalMatching/MultiModalMatching/productMatching.py&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vcs.patch.path&quot;: &quot;D:/pythonProject/MultiModalMatching&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/JPete/Desktop/patch_for_cluster.patch",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vcs.patch.path": "D:/pythonProject/MultiModalMatching"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="productMatching" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="MultiModalMatching" />
@@ -85,7 +86,21 @@
       <option name="project" value="LOCAL" />
       <updated>1657914225652</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="changes for cluster">
+      <created>1658248896931</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1658248896932</updated>
+    </task>
+    <task id="LOCAL-00004" summary="adjust true matches path for cluster">
+      <created>1658712753350</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1658712753350</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -102,7 +117,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create similarity vector" />
     <MESSAGE value="patch" />
-    <option name="LAST_COMMIT_MESSAGE" value="patch" />
+    <MESSAGE value="changes for cluster" />
+    <MESSAGE value="adjust true matches path for cluster" />
+    <option name="LAST_COMMIT_MESSAGE" value="adjust true matches path for cluster" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -129,7 +146,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/productMatching.py</url>
-          <line>55</line>
+          <line>62</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -154,18 +171,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/productMatching.py</url>
-          <line>51</line>
+          <line>58</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/productMatching.py</url>
-          <line>52</line>
+          <line>59</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/productMatching.py</url>
-          <line>53</line>
+          <line>60</line>
           <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Database/DbContextManager/dbMatchingResultsManager.py</url>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

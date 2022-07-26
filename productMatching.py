@@ -16,9 +16,10 @@ from Database.DbContextManager.dbMatchingResultsManager import DbMatchesContextM
 from Database.DbContextManager.dbUtilityContextManager import DbUtilityContextManager
 from Util.similarityGenerator import SimilarityGenerator
 from dataAlias import ZALANDO_TABLE_ALIAS, TOMMYH_GERRYW_TABLE_ALIAS
-from Util.evaluationUtilities import EvaluationUtilites
+from Util.trueMatchesToDb import TrueMatchesToDb
 from Util.classificationUtilities import ClassificationUtilities
 from Classification.classification import Classification
+from Classification.classification import ParallelClassification
 import logging
 
 
@@ -105,13 +106,15 @@ def main():
     create_image_embedding(m_utilities, db_embedding_manager)
     # ##### CREATING EMBEDDINGS #####
 
-    sim_generator = SimilarityGenerator(db_embedding_manager)
-    classification = Classification(db_matches_manager)
-    classification_utilities = ClassificationUtilities(db_utility_manager, sim_generator, m_utilities, classification)
-    classification_utilities.save_similarities()
-    #evaluation_utilities = EvaluationUtilites(db_utility_manager)
-    #evaluation_utilities.save_matches_to_db()
+    #sim_generator = SimilarityGenerator(db_embedding_manager)
+    #classification = Classification(db_matches_manager)
+    #classification_utilities = ClassificationUtilities(db_utility_manager, sim_generator, m_utilities, classification)
+    #classification_utilities.save_similarities()
+    true_matches_to_db = TrueMatchesToDb(db_utility_manager)
+    true_matches_to_db.save_matches_to_db()
 
+    classification = ParallelClassification(m_utilities)
+    classification.conduct_classification()
     # ##### TRAINING THE CLASSIFIER #####
     #db_train_data_manager = DbTrainDataContextManager()
     #train_classifier(m_utilities, db_train_data_manager, db_embedding_manager)

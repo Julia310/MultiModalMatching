@@ -10,16 +10,7 @@ class ClassificationUtilities:
 
     def save_similarities(self):
         for i in tqdm(range(len(self.potential_matches)), desc='save similarities of potential matches'):
-            sim_vector = self.sim_generator.get_similarity_vector(self.potential_matches[i])
-
-            sim_dict = {
-                'zal_id': self.potential_matches[i][0],
-                'th_gw_id': self.potential_matches[i][1],
-                'name': sim_vector[0],
-                'variant': sim_vector[1],
-                'price': sim_vector[2],
-                'image': sim_vector[3]
-            }
+            sim_dict = self.sim_generator.get_similarity_vector(self.potential_matches[i])
 
             self.db_context.save_similarity_vector(sim_dict)
             self.classification.conduct_classification(sim_dict)

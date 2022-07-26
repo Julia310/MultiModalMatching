@@ -10,7 +10,7 @@ if 'linux' in sys.platform:
     MATCHES_ZAL_TH = os.path.join(os.path.abspath('./MultiModalMatching/Datasets'), 'matches_zalando_tommyhilfiger.csv')
 
 
-class EvaluationUtilites:
+class TrueMatchesToDb:
     def __init__(self, db_context):
         self.zal_gw_reader = csv.reader(open(MATCHES_ZAL_GW))
         self.zal_th_reader = csv.reader(open(MATCHES_ZAL_TH))
