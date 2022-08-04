@@ -1,9 +1,12 @@
 from Database.dbContext import mysql_db
 from Database.Models.utilityModels import Similarities
-import logging
 
 
 class DbUtilityContextManager:
+    """
+        Database context to save all calculated similarities of the potential classified_matches after performing blocking.
+        Used to Explore different classification thresholds.
+    """
 
     def __init__(self):
         self.connection = mysql_db

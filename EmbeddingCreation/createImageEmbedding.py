@@ -1,6 +1,6 @@
 import keras.models
 from keras.applications.resnet import ResNet50
-from ImagePreprocessing.imageBatchPreprocessing import ImageBatchIterator
+from ImagePreprocessing.imageBatchIterator import ImageBatchIterator
 from multiprocessing.pool import ThreadPool
 from ImagePreprocessing.imagePreprocessing import get_and_preprocess_image
 import os
@@ -12,15 +12,17 @@ from sys import platform
 
 MODEL_PATH = os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'resnet50.h5')
 if 'linux' in platform:
-    MODEL_PATH = os.path.join(os.path.abspath('./MultiModalMatching/EmbeddingCreation'), 'Model', 'resnet50.h5')
+    MODEL_PATH = os.path.join(os.path.abspath('./multimodalmatching/EmbeddingCreation'), 'Model', 'resnet50.h5')
 
 
 class ImageEmbeddingGenerator:
+    """
+        Generates images embeddings with the keras ResNet50 models
+    """
 
     def __init__(self):
         self.image_size = [224, 224, 3]
         self.model = self.instantiate_model()
-        self.image_split_count = 5
 
     def instantiate_model(self):
         if not os.path.exists(MODEL_PATH):
@@ -38,18 +40,18 @@ class ImageEmbeddingGenerator:
         img_byte_dict = {'articleId': img_dict['articleId'], 'image': pickle.dumps(vector)}
         return img_byte_dict
 
-    def split_image_for_persisting(self, vector):
-        split_dict = np.array_split(vector, self.image_split_count)
-        return split_dict
-
 
 class ManageImageEmbeddings:
-    def __init__(self, image_list1, image_list2, data_alias1, data_alias2, db_embedding_manager):
-        self.image_batch_iterator1 = ImageBatchIterator(image_list1)
-        self.image_batch_iterator2 = ImageBatchIterator(image_list2)
-        self.data_alias1 = data_alias1
-        self.data_alias2 = data_alias2
-        self.processes = 10
+    """
+        Serves as the interface between image prepocessing, embedding generation and image persisting.
+        Obtains the image embedding from the ImageEmbeddingGenerator class.
+    """
+    def __init__(self, image_list_zal, image_list_th_gw, data_alias_zal, data_alias_th_gw, db_embedding_manager):
+        self.image_batch_iterator_zal = ImageBatchIterator(image_list_zal)
+        self.image_batch_iterator_th_gw = ImageBatchIterator(image_list_th_gw)
+        self.data_alias_zal = data_alias_zal
+        self.data_alias_th_gw = data_alias_th_gw
+        self.processes = 4
         self.pool = ThreadPool(self.processes)
         self.image_embedding_generator = ImageEmbeddingGenerator()
         self.db_manager = db_embedding_manager
@@ -59,6 +61,7 @@ class ManageImageEmbeddings:
         while batch is not None:
             embeddings = []
 
+            # If multi is true the image preprocessing step is performed by multiple threads.
             if multi:
                 img_batch = self.pool.map(get_and_preprocess_image, batch)
             else:
@@ -79,11 +82,11 @@ class ManageImageEmbeddings:
         return image_list
 
     def generate_embeddings(self):
-        self.process_image_batches(self.image_batch_iterator1, self.data_alias1)
-        self.process_image_batches(self.image_batch_iterator2, self.data_alias2)
+        self.process_image_batches(self.image_batch_iterator_zal, self.data_alias_zal)
+        self.process_image_batches(self.image_batch_iterator_th_gw, self.data_alias_th_gw)
 
     def save_image_embeddings(self, embeddings, data_alias):
         if data_alias == ZALANDO_TABLE_ALIAS:
-            self.db_manager.update_zalando_image_by_article_id(embeddings)
+            self.db_manager.update_zalando_image_embedding_by_article_id(embeddings)
         else:
-            self.db_manager.update_th_gw_image_by_article_id(embeddings)
+            self.db_manager.update_th_gw_image_embedding_by_article_id(embeddings)

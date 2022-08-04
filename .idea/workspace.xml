@@ -1,24 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aef66222-2657-4141-94fb-8a3a61f75b24" name="Changes" comment="adjust true matches path for cluster">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="a9896499-02cd-4f39-a4a7-22ed14915243" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Evaluation/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Evaluation/blockingEvaluation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Evaluation/classificationEvaluation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ImagePreprocessing/imageConverter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classification/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classification/classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classification/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classification/parallelClassification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classification/classificationWorker.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classification/classifier.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClassifierTraining/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classification/sequentialClassification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClassifierTraining/test.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClassifierTraining/train.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClassifierTraining/trainClassifier.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClassifierTraining/trainingPreparation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/DbContextManager/dbEmbeddingContextManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Database/DbContextManager/dbEmbeddingContextManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/DbContextManager/dbMatchingResultsManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Database/DbContextManager/dbMatchingResultsManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/DbContextManager/dbTrainDataContextManager.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/DbContextManager/dbUtilityContextManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Database/DbContextManager/dbUtilityContextManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Models/baseModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Models/baseModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Models/embeddingModels.py" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Models/embeddingModels.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/Models/matchingResultsModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Models/matchingResultsModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Models/trainDataModels.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/Models/utilityModels.py" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Models/utilityModels.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Util/classificationUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/classificationUtilities.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Util/evaluationUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/trueMatchesToDb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/dbContext.py" beforeDir="false" afterPath="$PROJECT_DIR$/Database/dbContext.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmbeddingCreation/Model/resnet.h5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmbeddingCreation/createImageEmbedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmbeddingCreation/createImageEmbedding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagePreprocessing/imageBatchPreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImagePreprocessing/imageBatchIterator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagePreprocessing/imagePreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImagePreprocessing/imagePreprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TextPreprocessing/CategoryTest/test_matches.py" beforeDir="false" afterPath="$PROJECT_DIR$/TextPreprocessing/CategoryTest/test_matches.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TextPreprocessing/addCategories.py" beforeDir="false" afterPath="$PROJECT_DIR$/TextPreprocessing/addCategories.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TextPreprocessing/textCleaning.py" beforeDir="false" afterPath="$PROJECT_DIR$/TextPreprocessing/textCleaning.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TextPreprocessing/textPreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/TextPreprocessing/textPreprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Util/classificationUtilities.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Util/matchingUtilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/matchingUtilities.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Util/similarityGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/similarityGenerator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/productMatching.py" beforeDir="false" afterPath="$PROJECT_DIR$/productMatching.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Util/trueMatchesToDb.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/trueMatches.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataAlias.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataAlias.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classification/thresholdPrediction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/productMatching.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -26,34 +64,39 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2Bs4X5fUU42rXaSFFxahyyglnzL" />
+  <component name="ProjectId" id="2CU9Ei4ugvGk1l3Ld8mzJsH1zPe" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/JPete/Desktop/patch_for_cluster.patch",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vcs.patch.path": "D:/pythonProject/MultiModalMatching"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/49151/MultiModalMatching/Classification&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\49151\MultiModalMatching\Classification" />
+      <recent name="C:\Users\49151\MultiModalMatching" />
+      <recent name="C:\Users\49151\MultiModalMatching\Evaluation" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration name="productMatching" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="MultiModalMatching" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\PaulScheel\AppData\Local\Programs\Python\Python310\python.exe" />
+      <option name="SDK_HOME" value="C:\Users\49151\AppData\Local\Programs\Python\Python310\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/productMatching.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\49151\MultiModalMatching\main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -66,41 +109,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="aef66222-2657-4141-94fb-8a3a61f75b24" name="Changes" comment="" />
-      <created>1657681516839</created>
+      <changelist id="a9896499-02cd-4f39-a4a7-22ed14915243" name="Changes" comment="" />
+      <created>1658846186767</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1657681516839</updated>
+      <updated>1658846186767</updated>
     </task>
-    <task id="LOCAL-00001" summary="create similarity vector">
-      <created>1657682164825</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1657682164825</updated>
-    </task>
-    <task id="LOCAL-00002" summary="patch">
-      <created>1657914225652</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1657914225652</updated>
-    </task>
-    <task id="LOCAL-00003" summary="changes for cluster">
-      <created>1658248896931</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1658248896932</updated>
-    </task>
-    <task id="LOCAL-00004" summary="adjust true matches path for cluster">
-      <created>1658712753350</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1658712753350</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -114,88 +128,45 @@
       </map>
     </option>
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="create similarity vector" />
-    <MESSAGE value="patch" />
-    <MESSAGE value="changes for cluster" />
-    <MESSAGE value="adjust true matches path for cluster" />
-    <option name="LAST_COMMIT_MESSAGE" value="adjust true matches path for cluster" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ClassifierTraining/trainClassifier.py</url>
-          <line>64</line>
+          <url>file://$PROJECT_DIR$/Database/DbContextManager/dbMatchingResultsManager.py</url>
+          <line>49</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py</url>
-          <line>49</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/Evaluation/blockingEvaluation.py</url>
+          <line>68</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/EmbeddingCreation/createTextEmbedding.py</url>
-          <line>54</line>
-          <option name="timeStamp" value="7" />
+          <url>file://$PROJECT_DIR$/Evaluation/blockingEvaluation.py</url>
+          <line>42</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ClassifierTraining/trainClassifier.py</url>
-          <line>63</line>
-          <option name="timeStamp" value="10" />
+          <url>file://$PROJECT_DIR$/ImagePreprocessing/imagePreprocessing.py</url>
+          <line>40</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/productMatching.py</url>
-          <line>62</line>
-          <option name="timeStamp" value="11" />
+          <url>file://$PROJECT_DIR$/ImagePreprocessing/imagePreprocessing.py</url>
+          <line>134</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ClassifierTraining/trainClassifier.py</url>
-          <line>98</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ClassifierTraining/trainClassifier.py</url>
-          <line>88</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/DatabaseManager/databaseConnection.py</url>
-          <line>66</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/DatabaseManager/databaseConnection.py</url>
-          <line>58</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/productMatching.py</url>
-          <line>58</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/productMatching.py</url>
-          <line>59</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/productMatching.py</url>
-          <line>60</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Database/DbContextManager/dbMatchingResultsManager.py</url>
-          <option name="timeStamp" value="30" />
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>127</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
-      <default-breakpoints>
-        <breakpoint type="python-exception">
-          <properties notifyOnTerminate="true" exception="BaseException">
-            <option name="notifyOnTerminate" value="true" />
-          </properties>
-        </breakpoint>
-      </default-breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="data_path_list2" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

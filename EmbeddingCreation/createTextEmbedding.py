@@ -6,12 +6,18 @@ from dataAlias import ZALANDO_TABLE_ALIAS
 
 
 def mean_pooling(model_output, attention_mask):
+    """
+        Mean Pooling - Take attention mask into account for correct averaging
+    """
     token_embeddings = model_output[0]  # First element of model_output contains all token embeddings
     input_mask_expanded = attention_mask.unsqueeze(-1).expand(token_embeddings.size()).float()
     return torch.sum(token_embeddings * input_mask_expanded, 1) / torch.clamp(input_mask_expanded.sum(1), min=1e-9)
 
 
 class TransformersEmbeddingGenerator:
+    """
+        Generates text embeddings by utilizing the given sentence transformer model.
+    """
     def __init__(self, model_name):
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model_name = AutoModel.from_pretrained(model_name)
@@ -27,19 +33,25 @@ class TransformersEmbeddingGenerator:
 
 
 class ManageTextEmbeddings:
+    """
+        Receives the preprocessed Zalando text data within the text_df_zal dataframe and the preprocessed
+        Tommy Hilfiger / Gerry Weber Text data in the text_df_th_gw.
+        Obtains the text embeddings from the TransformersEmbeddingGenerator and saves the embeddings as well as the
+        price float value in the database for later classification
+    """
 
-    def __init__(self, model_name, text_df1, text_df2, data_alias1, data_alias2, db_embedding_manager):
+    def __init__(self, model_name, text_df_zal, text_df_th_gw, data_alias_zal, data_alias_th_gw, db_embedding_manager):
         self.model_name = model_name
-        self.text_df1 = text_df1
-        self.text_df2 = text_df2
+        self.text_df_zal = text_df_zal
+        self.text_df_th_gw = text_df_th_gw
         self.embedding_generator = TransformersEmbeddingGenerator(model_name=model_name)
-        self.data_alias1 = data_alias1
-        self.data_alias2 = data_alias2
+        self.data_alias_zal = data_alias_zal
+        self.data_alias_th_gw = data_alias_th_gw
         self.db_manager = db_embedding_manager
 
     def manage_embeddings(self):
-        attributes = list(self.text_df1.columns)
-        text_df_list = [(self.text_df1, self.data_alias1), (self.text_df2, self.data_alias2)]
+        attributes = list(self.text_df_zal.columns)
+        text_df_list = [(self.text_df_zal, self.data_alias_zal), (self.text_df_th_gw, self.data_alias_th_gw)]
         for j in range(len(text_df_list)):
             (text_df, data_alias) = text_df_list[j]
             emb_list = []

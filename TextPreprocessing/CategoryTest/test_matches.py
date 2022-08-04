@@ -39,9 +39,12 @@ def test_matches(matches, df1, df2):
 
 
 def main():
+    """
+        Test to check how many classified_matches will be lost after blocking by adding categories to the data
+    """
     df2 = pd.read_csv(gw)
     df_zal = pd.read_csv(zal)
-    #test_matches(gw_zal, df_zal, df2)
+    test_matches(gw_zal, df_zal, df2)
     df2 = pd.read_csv(th)
     test_matches(th_zal, df_zal, df2)
 

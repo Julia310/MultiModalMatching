@@ -2,6 +2,9 @@ from math import *
 
 
 def square_rooted(x):
+    """
+        Computes the length of the given vector x
+    """
     return round(sqrt(sum([a * a for a in x])), 5)
 
 
@@ -11,21 +14,34 @@ def cosine_similarity(x, y):
     return round(numerator / float(denominator), 3)
 
 
-def jaccard_similarity(x, y):
-    intersection_cardinality = len(set.intersection(*[set(x), set(y)]))
-    union_cardinality = len(set.union(*[set(x), set(y)]))
-    return intersection_cardinality / float(union_cardinality)
-
-
 class SimilarityGenerator:
+    """
+        Class for similarity calculation to perform classification
+    """
     def __init__(self, db_embeddings_context_manager):
         self.db_manager = db_embeddings_context_manager
 
     def get_similarity_vector(self, article_ids):
+        """
+            Given an articleId of Zalando and a MPN of Tommy Hilfiger / Gerry Weber data from the article_ids list,
+            the embeddings for the corresponding attributes and the float value of the price are obtained from the
+            database.
+            Returns a dictionary with similarities for the appropriate attributes
+            Example:
+                 sim_vec = {
+                    'zal_id': article_ids[0],
+                    'th_gw_id':article_ids[1],
+                    'name: 0.499,
+                    'variant': 0.603,
+                    'price': 0.85,
+                    'image': 0.98
+                }
+        """
+
         sim_vec = {'zal_id': article_ids[0],
                    'th_gw_id':article_ids[1]}
-        zalando_embeddings = self.db_manager.select_zalando_by_article_id(article_ids[0])
-        th_gw_embeddings = self.db_manager.select_th_gw_by_article_id(article_ids[1])
+        zalando_embeddings = self.db_manager.select_zalando_product_embeddings_by_article_id(article_ids[0])
+        th_gw_embeddings = self.db_manager.select_th_gw_product_embeddings_by_article_id(article_ids[1])
 
         # name similarity
         zal_name = zalando_embeddings['name']

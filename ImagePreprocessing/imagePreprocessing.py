@@ -11,42 +11,50 @@ import logging
 from dataAlias import ZALANDO_TABLE_ALIAS, TOMMYH_GERRYW_TABLE_ALIAS
 from sys import platform
 
-gerry_web_base_path = r'D:\pythonProject\MultiModalMatching\GerryWeber'
-tommy_h_base_path = r"D:\pythonProject\MultiModalMatching\TommyHilfiger"
-zalando_base_path = r"D:\pythonProject\MultiModalMatching\Zalando"
+gerry_web_base_path = r'D:\pythonProject\multimodalmatching\GerryWeber'
+tommy_h_base_path = r"D:\pythonProject\multimodalmatching\TommyHilfiger"
+zalando_base_path = r"D:\pythonProject\multimodalmatching\Zalando"
 if 'linux' in platform:
     gerry_web_base_path = os.path.abspath(r'./Images/GerryWeber')
     tommy_h_base_path = os.path.abspath(r'./Images/TommyHilfiger')
     zalando_base_path = os.path.abspath(r'./Images/Zalando')
 
 
-def download_image(img_url_dict):
-    img_url = img_url_dict['url']
-    timeout = 20
-    socket.setdefaulttimeout(timeout)
+def get_and_preprocess_image(img_url_dict):
+    """
+        image_url_dict contains information for a single image.
+        Example:
+            {
+                'articleId': 'T=121U089-K11',
+                'path': 'image_name.jpg',
+                'brand': jommy hilfiger',
+                'url': 'https://...',
+                'data_alias': 'zal'
+            }
+        Returns image_dict with the following information:
+        image_dict = {'articleId': articleId/MPN, 'image': image_embedding}
 
-    req = Request(img_url,
-                  headers={'User-Agent': 'Mozilla/5.0 Windows NT 6.1; WOW64; rv:12.0 Gecko/20100101 Firefox/12.0'})
-    with urlopen(req) as response:
-        img_bytes = response.read()
-        arr = np.asarray(bytearray(img_bytes), dtype=np.uint8)
-        save_image_to_file_local(img_bytes, img_url_dict)
-        img = cv2.imdecode(arr, -1)
-        return {'articleId': img_url_dict['articleId'], 'image': img}
+    """
+    image_dict = get_image(img_url_dict, True)
+    if not image_dict:
+        return image_dict
+    return preprocess_image(image_dict)
 
 
-def save_image_to_file_local(img_bytes, img_url_dict):
-    image = Image.open(io.BytesIO(img_bytes))
-
-    file_path = os.path.join(get_base_path_by_brand_and_data_alias(img_url_dict['brand'], img_url_dict['data_alias']),
-                             img_url_dict['path'])
-    if img_url_dict['brand'] == 'tommy hilfiger' and img_url_dict['data_alias'] == TOMMYH_GERRYW_TABLE_ALIAS:
-        file_path = file_path + '.jpg'
-    image.save(file_path)
-    logging.info('==>image saved under ' + file_path)
+def get_image(img_dict, file_system=False):
+    """
+        file_system is false by default.
+        If false the image is read from disk otherwise the image is downloaded by given url
+    """
+    if file_system:
+        return load_images_from_file_system(img_dict)
+    return download_image(img_dict)
 
 
 def load_images_from_file_system(img_dict):
+    """
+        Loads the image from filesystem if available and not corrupted, otherwise the image is downloaded.
+    """
     brand = img_dict['brand']
     data_alias = img_dict['data_alias']
     base_path = get_base_path_by_brand_and_data_alias(brand, data_alias)
@@ -69,6 +77,35 @@ def load_images_from_file_system(img_dict):
         return {'articleId': img_dict['articleId'], 'image': np_image, 'file': file}
 
 
+def download_image(img_url_dict):
+    img_url = img_url_dict['url']
+    timeout = 20
+    socket.setdefaulttimeout(timeout)
+
+    req = Request(img_url,
+                  headers={'User-Agent': 'Mozilla/5.0 Windows NT 6.1; WOW64; rv:12.0 Gecko/20100101 Firefox/12.0'})
+    with urlopen(req) as response:
+        img_bytes = response.read()
+        arr = np.asarray(bytearray(img_bytes), dtype=np.uint8)
+        save_image_to_file_local(img_bytes, img_url_dict)
+        img = cv2.imdecode(arr, -1)
+        return {'articleId': img_url_dict['articleId'], 'image': img}
+
+
+def save_image_to_file_local(img_bytes, img_url_dict):
+    """
+        persist image on disk after download
+    """
+    image = Image.open(io.BytesIO(img_bytes))
+
+    file_path = os.path.join(get_base_path_by_brand_and_data_alias(img_url_dict['brand'], img_url_dict['data_alias']),
+                             img_url_dict['path'])
+    if img_url_dict['brand'] == 'tommy hilfiger' and img_url_dict['data_alias'] == TOMMYH_GERRYW_TABLE_ALIAS:
+        file_path = file_path + '.jpg'
+    image.save(file_path)
+    logging.info('==>image saved under ' + file_path)
+
+
 def get_base_path_by_brand_and_data_alias(brand, data_alias):
     base_path = ""
     if brand == 'gerry weber' and data_alias == TOMMYH_GERRYW_TABLE_ALIAS:
@@ -80,13 +117,10 @@ def get_base_path_by_brand_and_data_alias(brand, data_alias):
     return base_path
 
 
-def get_image(img_url_dict, file_system=False):
-    if file_system:
-        return load_images_from_file_system(img_url_dict)
-    return download_image(img_url_dict)
-
-
 def preprocess_image(image_dict):
+    """
+        Resizes the image and adds a dimension with subsequent image preprocessing for the keras Resnet model.
+    """
     articleId = image_dict['articleId']
     img = image_dict['image']
     try:
@@ -99,10 +133,3 @@ def preprocess_image(image_dict):
     img = preprocess_input(img)
 
     return {'articleId': articleId, 'image': img}
-
-
-def get_and_preprocess_image(img_url_dict):
-    image_dict = get_image(img_url_dict, True)
-    if not image_dict:
-        return image_dict
-    return preprocess_image(image_dict)

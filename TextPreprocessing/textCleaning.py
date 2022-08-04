@@ -1,13 +1,6 @@
-import pandas as pd
-import numpy as np
-#from nltk.corpus import stopwords
 import re
-#from nltk.stem.snowball import SnowballStemmer
-#from nltk.tokenize import word_tokenize
 from num2words import num2words
 import logging
-#stemmer = SnowballStemmer("german")
-#stop_words = set(stopwords.words("german"))
 
 
 def replace_specific_letters(text):
@@ -39,7 +32,6 @@ def replace_year(text):
         year = year[0]
         year_str = num2words(int(year), to='year', lang='de')
         text = text.replace(str(year), year_str)
-        #logging.info(text)
     return text
 
 def replace_float(text):
@@ -60,15 +52,12 @@ def replace_int(text):
         num = str(numbers_list[i])
         num_str = num2words(int(num), lang='de')
         text = text.replace(num, num_str)
-        #logging.info(text)
     return text
 
 
 def remove_special_chars(text):
-    #new_text = ''
     for i in text:
         if not (i.isalnum() or i == ' ' or i == '-'):
-            #new_text += i
             logging.info(text)
             break
 
@@ -76,22 +65,6 @@ def remove_special_chars(text):
     #new_text = _RE_COMBINE_WHITESPACE.sub(" ", new_text).strip()
 
     return text
-
-
-'''def stop_word_removal(text):
-    german_stop_words = stopwords.words('german')
-    token = text.split()
-    return ' '.join([w for w in token if not w in german_stop_words])
-
-
-def text_stemming(text):
-    word_tokens = word_tokenize(text)
-    words_tokens_lower = [word.lower() for word in word_tokens]
-
-    words_filtered = [
-        stemmer.stem(word) for word in words_tokens_lower
-    ]
-    return " ".join(words_filtered)'''
 
 
 def has_numbers(inputString):
@@ -143,6 +116,9 @@ def clean_text(text, column):
 
 
 def clean_columns(df, columns):
+    """
+        Cleans given columns in dataframe.
+    """
     for col in columns:
         df[col] = df[col].map(
             lambda x: clean_text(x, col)

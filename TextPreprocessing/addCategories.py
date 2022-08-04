@@ -1,6 +1,9 @@
-import logging
+
 
 def add_categories(df):
+    """
+        Add category column to the cleaned Zalando or Gerry Weber / Tommy Hilfiger dataframe for later blocking procedure
+    """
     for value in df['name'].iteritems():
         product = value[1].lower()
         if ('schuh' in product and not 'shirt' in product) or 'sneaker' in product or 'sandal' in product or 'ballerina' in product \
@@ -58,5 +61,3 @@ def add_categories(df):
         else:
             row = value[0]
             df.loc[row, 'category'] = 'Sonstiges'
-
-    #logging.info(df.groupby(['category']).count())

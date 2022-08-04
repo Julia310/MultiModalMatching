@@ -12,12 +12,12 @@ tommyh_path = os.path.abspath('./Datasets/TommyHilfiger.csv')
 clean_gerryw_path = os.path.abspath('./Datasets/clean_GerryWeber.csv')
 gerryw_path = os.path.abspath('./Datasets/GerryWeber.csv')
 if 'linux' in platform:
-    clean_zalando_path = os.path.abspath('./MultiModalMatching/Datasets/clean_Zalando.csv')
-    zalando_path = os.path.abspath('./MultiModalMatching/Datasets/Zalando.csv')
-    clean_tommyh_path = os.path.abspath('./MultiModalMatching/Datasets/clean_TommyHilfiger.csv')
-    tommyh_path = os.path.abspath('./MultiModalMatching/Datasets/TommyHilfiger.csv')
-    clean_gerryw_path = os.path.abspath('./MultiModalMatching/Datasets/clean_GerryWeber.csv')
-    gerryw_path = os.path.abspath('./MultiModalMatching/Datasets/GerryWeber.csv')
+    clean_zalando_path = os.path.abspath('./multimodalmatching/Datasets/clean_Zalando.csv')
+    zalando_path = os.path.abspath('./multimodalmatching/Datasets/Zalando.csv')
+    clean_tommyh_path = os.path.abspath('./multimodalmatching/Datasets/clean_TommyHilfiger.csv')
+    tommyh_path = os.path.abspath('./multimodalmatching/Datasets/TommyHilfiger.csv')
+    clean_gerryw_path = os.path.abspath('./multimodalmatching/Datasets/clean_GerryWeber.csv')
+    gerryw_path = os.path.abspath('./multimodalmatching/Datasets/GerryWeber.csv')
 
 
 def adjust_brand(input_string):
@@ -29,6 +29,10 @@ def adjust_brand(input_string):
 
 
 def get_first_image_url(urls, dataset):
+    """
+        Select only url of the first image belonging to a product,
+        in case the image is not available or corrupted to download later.
+    """
     if dataset == 'th':
         url = urls.split(',')[0]
     elif dataset == 'z':
@@ -39,6 +43,9 @@ def get_first_image_url(urls, dataset):
 
 
 def url_to_file_name(url, dataset):
+    """
+        Preprocess url in case image is not available or corrupted to download later
+    """
     if dataset in ['th', 'z']:
         file_name = url.split('/')[-1]
         file_name_clean = file_name.split('?')[0]
@@ -109,6 +116,13 @@ def gerryw_preprocessing():
 
 
 def preprocess_text_data():
+    """
+        Creates the following csv files with preprocessed data for matching:
+            ../Datasets/clean_GerryWeber.csv,
+            ../Datasets/clean_TommyHilfiger.csv,
+            ../Datasets/clean_Zalando.csv,
+        Subsequently these three paths are returned
+    """
     tommyh_preprocessing()
     gerryw_preprocessing()
     zalando_preprocessing()
