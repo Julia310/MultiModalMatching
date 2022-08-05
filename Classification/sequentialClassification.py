@@ -1,6 +1,6 @@
 from Classification.thresholdPrediction import threshold_prediction
 from tqdm import tqdm
-
+from Database.DbContextManager.dbUtilityContextManager import DbUtilityContextManager
 
 class SequentialClassification:
     """
@@ -10,6 +10,7 @@ class SequentialClassification:
         self.db_context = db_context
         self.sim_generator = sim_generator
         self.potential_matches = m_utilities.get_potential_matches_as_flat_list()
+        self.db_utility_context = DbUtilityContextManager()
 
     def conduct_classification(self):
         """
@@ -19,5 +20,6 @@ class SequentialClassification:
         """
         for i in tqdm(range(len(self.potential_matches)), desc='save similarities of potential classified_matches'):
             sim_dict = self.sim_generator.get_similarity_vector(self.potential_matches[i])
+            self.db_utility_context.save_similarity_vector(sim_dict)
             if threshold_prediction(sim_dict) == 1:
                 self.db_context.save_classified_match((sim_dict['zal_id'], sim_dict['th_gw_id']))

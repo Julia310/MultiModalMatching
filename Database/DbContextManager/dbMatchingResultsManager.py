@@ -40,9 +40,9 @@ class DbMatchesContextManager:
     def recreate_tables(self):
         if self.classified_matches.table_exists():
             self.classified_matches.drop_table()
-        if self.true_matches.table_exists():
-            self.true_matches.drop_table()
-        self.true_matches.create_table()
+        #if self.true_matches.table_exists():
+            #self.true_matches.drop_table()
+        #self.true_matches.create_table()
         self.classified_matches.create_table()
 
     def get_classification_evaluation_data(self, total_potential_matches):

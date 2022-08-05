@@ -11,9 +11,9 @@ import logging
 from dataAlias import ZALANDO_TABLE_ALIAS, TOMMYH_GERRYW_TABLE_ALIAS
 from sys import platform
 
-gerry_web_base_path = r'D:\pythonProject\multimodalmatching\GerryWeber'
-tommy_h_base_path = r"D:\pythonProject\multimodalmatching\TommyHilfiger"
-zalando_base_path = r"D:\pythonProject\multimodalmatching\Zalando"
+gerry_web_base_path = r'D:\pythonProject\MultiModalMatching\GerryWeber'
+tommy_h_base_path = r"D:\pythonProject\MultiModalMatching\TommyHilfiger"
+zalando_base_path = r"D:\pythonProject\MultiModalMatching\Zalando"
 if 'linux' in platform:
     gerry_web_base_path = os.path.abspath(r'./Images/GerryWeber')
     tommy_h_base_path = os.path.abspath(r'./Images/TommyHilfiger')

@@ -12,14 +12,14 @@ class ImageConverter:
     """
 
     SRC_FOLDER_NAME_ABS = r'C:\Users\JPete\TommyHilfiger'
-    TARGET_FOLDER_NAME_ABS = r'D:\pythonProject\multimodalmatching\TommyHilfiger'
+    TARGET_FOLDER_NAME_ABS = r'D:\pythonProject\MultiModalMatching\TommyHilfiger'
 
     TYPE_JPEG = '.jpeg'
     TYPE_JPG = '.jpg'
     TYPE_WEBM = '.webm'
 
     def __init__(self):
-        self.conversion_path = r'D:\pythonProject\multimodalmatching\TommyHilfiger'
+        self.conversion_path = r'D:\pythonProject\MultiModalMatching\TommyHilfiger'
         self.source_path = r'C:\Users\JPete\TommyHilfiger'
         self.tmp = ''
 

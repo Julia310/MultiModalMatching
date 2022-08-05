@@ -6,8 +6,8 @@ import sys
 MATCHES_ZAL_GW = os.path.join(os.path.abspath('./Datasets'), 'matches_zalando_gerryweber.csv')
 MATCHES_ZAL_TH = os.path.join(os.path.abspath('./Datasets'), 'matches_zalando_tommyhilfiger.csv')
 if 'linux' in sys.platform:
-    MATCHES_ZAL_GW = os.path.join(os.path.abspath('./multimodalmatching/Datasets'), 'matches_zalando_gerryweber.csv')
-    MATCHES_ZAL_TH = os.path.join(os.path.abspath('./multimodalmatching/Datasets'), 'matches_zalando_tommyhilfiger.csv')
+    MATCHES_ZAL_GW = os.path.join(os.path.abspath('./MultiModalMatching/Datasets'), 'matches_zalando_gerryweber.csv')
+    MATCHES_ZAL_TH = os.path.join(os.path.abspath('./MultiModalMatching/Datasets'), 'matches_zalando_tommyhilfiger.csv')
 
 
 def get_true_matches():

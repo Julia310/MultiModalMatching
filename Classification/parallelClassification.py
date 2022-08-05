@@ -2,6 +2,7 @@ from multiprocessing import Pool
 from multiprocessing.pool import ThreadPool
 from Database.DbContextManager.dbMatchingResultsManager import DbMatchesContextManager
 from Database.DbContextManager.dbEmbeddingContextManager import DbEmbeddingContextManager
+from Database.DbContextManager.dbUtilityContextManager import DbUtilityContextManager
 from Util.similarityGenerator import SimilarityGenerator
 from Classification.thresholdPrediction import threshold_prediction
 import logging
@@ -13,7 +14,9 @@ def classification(args):
     """
     ids = args['article_ids']
     sim_gen = args['sim_gen']
+    util_context = args['util_context']
     sim_dict = sim_gen.get_similarity_vector(ids)
+    util_context.save_similarity_vector(sim_dict)
     prediction = threshold_prediction(sim_dict)
     if prediction == 1:
         return {'zal_id': sim_dict['zal_id'],
@@ -28,19 +31,22 @@ def thread_classification(potential_matches):
     """
     context = DbMatchesContextManager()
     embed_context = DbEmbeddingContextManager()
+    util_context = DbUtilityContextManager()
     sim_gen = SimilarityGenerator(embed_context)
     pool = ThreadPool(10)
     chunk_size = 100
     chunks = [potential_matches[x:x + chunk_size] for x in range(0, len(potential_matches), chunk_size)]
+    cnt = 0
 
     for chunk in chunks:
+        cnt += 1
         arg_list = []
         for article_ids in chunk:
-            arg_list.append({'article_ids': article_ids, 'sim_gen': sim_gen})
+            arg_list.append({'article_ids': article_ids, 'sim_gen': sim_gen, 'util_context': util_context})
         prediction_list = pool.map(classification, arg_list)
         prediction_list = list(filter(None, prediction_list))
         context.save_many_classified_matches(prediction_list)
-        logging.info(str(chunk_size) + ' classified_matches saved.')
+        print(str(chunk_size * cnt) + ' classified_matches saved.')
 
 
 def split(a, n):
@@ -56,7 +62,7 @@ class ParallelClassification:
         Conducts a classification for every pair of potential matches utilizing 4 processes in parallel
     """
     def __init__(self, m_utilities):
-        self.processes = 4
+        self.processes = 8
         logging.info(f'number of processes {self.processes}')
         self.potential_matches = m_utilities.get_potential_matches_as_flat_list()
 

@@ -12,7 +12,7 @@ from sys import platform
 
 MODEL_PATH = os.path.join(os.path.abspath(r'EmbeddingCreation'), 'Model', 'resnet50.h5')
 if 'linux' in platform:
-    MODEL_PATH = os.path.join(os.path.abspath('./multimodalmatching/EmbeddingCreation'), 'Model', 'resnet50.h5')
+    MODEL_PATH = os.path.join(os.path.abspath('./MultiModalMatching/EmbeddingCreation'), 'Model', 'resnet50.h5')
 
 
 class ImageEmbeddingGenerator:

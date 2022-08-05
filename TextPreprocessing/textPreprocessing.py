@@ -12,12 +12,12 @@ tommyh_path = os.path.abspath('./Datasets/TommyHilfiger.csv')
 clean_gerryw_path = os.path.abspath('./Datasets/clean_GerryWeber.csv')
 gerryw_path = os.path.abspath('./Datasets/GerryWeber.csv')
 if 'linux' in platform:
-    clean_zalando_path = os.path.abspath('./multimodalmatching/Datasets/clean_Zalando.csv')
-    zalando_path = os.path.abspath('./multimodalmatching/Datasets/Zalando.csv')
-    clean_tommyh_path = os.path.abspath('./multimodalmatching/Datasets/clean_TommyHilfiger.csv')
-    tommyh_path = os.path.abspath('./multimodalmatching/Datasets/TommyHilfiger.csv')
-    clean_gerryw_path = os.path.abspath('./multimodalmatching/Datasets/clean_GerryWeber.csv')
-    gerryw_path = os.path.abspath('./multimodalmatching/Datasets/GerryWeber.csv')
+    clean_zalando_path = os.path.abspath('./MultiModalMatching/Datasets/clean_Zalando.csv')
+    zalando_path = os.path.abspath('./MultiModalMatching/Datasets/Zalando.csv')
+    clean_tommyh_path = os.path.abspath('./MultiModalMatching/Datasets/clean_TommyHilfiger.csv')
+    tommyh_path = os.path.abspath('./MultiModalMatching/Datasets/TommyHilfiger.csv')
+    clean_gerryw_path = os.path.abspath('./MultiModalMatching/Datasets/clean_GerryWeber.csv')
+    gerryw_path = os.path.abspath('./MultiModalMatching/Datasets/GerryWeber.csv')
 
 
 def adjust_brand(input_string):

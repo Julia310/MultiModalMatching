@@ -119,8 +119,8 @@ def main():
 
     # ##### CONDUCTING CLASSIFICATION #####
     start = time()
-    #classification(m_utilities, db_matches_manager, db_embedding_manager, multi=False)
-    classification(m_utilities)
+    classification(m_utilities, db_matches_manager, db_embedding_manager, multi=False)
+    #classification(m_utilities)
     # ##### CONDUCTING CLASSIFICATION #####
 
     # ##### EVALUATION #####
