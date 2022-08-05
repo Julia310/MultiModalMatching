@@ -5,7 +5,7 @@
 ### Initial Setup
 
 - [ ] Clone the repository on the cluster ```git clone https://git.informatik.uni-leipzig.de/wd83zadi/multimodalmatching.git```
-- [ ] Place the directory Images with the folders Zalando, TommyHilfiger and GerryWeber inside nextto the Project folder
+- [ ] Place the directory Images with the folders Zalando, TommyHilfiger and GerryWeber next to the Project folder
 - [ ] load Python3 module by executing: ```module load Python/3.9.6-GCCcore-11.2.0-bare```
 - [ ] install virtual environment: ```pip install -- user  virtualenv```
 - [ ] create virtual environment: ```virtualenv venv```
