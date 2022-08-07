@@ -1,5 +1,5 @@
 from Database.dbContext import mysql_db
-from Database.Models.matchingResultsModel import Matches, TrueMatches
+from Database.Models.matchingEvaluationModels import Matches, TrueMatches, TommyHilfigerIds, GerryWeberIds
 import logging
 from peewee import JOIN
 
@@ -7,7 +7,7 @@ from peewee import JOIN
 class DbMatchesContextManager:
     """
         Persists classified and true classified_matches to database and enables methods to access these.
-        Emables to receive data for the evaluation of classification of the whole matching process.
+        Emables to receive data for the evaluation of threshold_classification of the whole matching process.
     """
 
     def __init__(self):
@@ -16,14 +16,14 @@ class DbMatchesContextManager:
         self.true_matches = TrueMatches
         self.batch_size = 1000
 
-    def save_classified_match(self, article_ids):
+    def save_match(self, article_ids):
         matches_dict = {
             'zal_id': article_ids[0],
             'th_gw_id': article_ids[1]
         }
         self.classified_matches.insert([matches_dict]).execute()
 
-    def save_many_classified_matches(self, matches):
+    def save_many_matches(self, matches):
         self.classified_matches.insert_many(matches).execute()
 
     def save_true_matches(self, matches):
@@ -40,9 +40,9 @@ class DbMatchesContextManager:
     def recreate_tables(self):
         if self.classified_matches.table_exists():
             self.classified_matches.drop_table()
-        #if self.true_matches.table_exists():
-            #self.true_matches.drop_table()
-        #self.true_matches.create_table()
+        if self.true_matches.table_exists():
+            self.true_matches.drop_table()
+        self.true_matches.create_table()
         self.classified_matches.create_table()
 
     def get_classification_evaluation_data(self, total_potential_matches):

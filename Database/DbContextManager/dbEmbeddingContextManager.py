@@ -39,7 +39,7 @@ class DbEmbeddingContextManager:
                 query.execute()
                 logging.info(str(idx_max) + ' rows inserted')
 
-    def update_zalando_image_embedding_by_article_id(self, batch):
+    def update_zalando_image_by_article_id(self, batch):
         for data_dict in tqdm(batch, desc='Persist image embeddings    '):
             query = self.zalando_embeddings.update(
                 image=data_dict['image'],
@@ -47,7 +47,7 @@ class DbEmbeddingContextManager:
                 where(self.zalando_embeddings.articleId == data_dict['articleId'])
             query.execute()
 
-    def update_th_gw_image_embedding_by_article_id(self, batch):
+    def update_th_gw_image_by_article_id(self, batch):
         for data_dict in tqdm(batch, desc='Persist image embeddings    '):
             query = self.th_gw_embeddings.update(
                 image=data_dict['image'],
@@ -55,7 +55,7 @@ class DbEmbeddingContextManager:
                 where(self.th_gw_embeddings.articleId == data_dict['articleId'])
             query.execute()
 
-    def select_zalando_product_embeddings_by_article_id(self, articleId):
+    def select_zalando_by_article_id(self, articleId):
         product = self.zalando_embeddings.select(). \
             where(articleId == self.zalando_embeddings.articleId).get()
         embeddings = {
@@ -66,7 +66,7 @@ class DbEmbeddingContextManager:
         }
         return embeddings
 
-    def select_th_gw_product_embeddings_by_article_id(self, articleId):
+    def select_th_gw_by_article_id(self, articleId):
         product = self.th_gw_embeddings.select(). \
             where(articleId == self.th_gw_embeddings.articleId).get()
         embeddings = {
@@ -78,9 +78,8 @@ class DbEmbeddingContextManager:
         return embeddings
 
     def recreate_tables(self):
-        if self.zalando_embeddings.table_exists():
-            self.zalando_embeddings.drop_table()
-        if self.th_gw_embeddings.table_exists():
-            self.th_gw_embeddings.drop_table()
-        self.zalando_embeddings.create_table()
-        self.th_gw_embeddings.create_table()
+        if ZalandoEmbeddings.table_exists():
+            ZalandoEmbeddings.drop_table()
+        if TommyHGerryWEmbeddings.table_exists():
+            TommyHGerryWEmbeddings.drop_table()
+        self.connection.create_tables([ZalandoEmbeddings, TommyHGerryWEmbeddings])

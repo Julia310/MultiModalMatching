@@ -1,4 +1,4 @@
-from Classification.thresholdPrediction import threshold_prediction
+from Classification.ThresholdClassification.thresholdPrediction import threshold_prediction
 from tqdm import tqdm
 from Database.DbContextManager.dbUtilityContextManager import DbUtilityContextManager
 

@@ -15,7 +15,8 @@ if 'linux' in platform:
     mysql_db = ReconnectMySQLDatabase('dbprak_09', user='dbprak_09', password='hDVNlxpQHZGQRbv',
                                       host='wdi13.informatik.uni-leipzig.de', port=3406)
 else:
-    mysql_db = MySQLDatabase('MatchingData', user='root', password='asdfghjkl.54321', host='127.0.0.1', port=3306)
+    mysql_db = MySQLDatabase('MatchingData', user='root', password='asdfghjkl'
+                                                                   '.54321', host='127.0.0.1', port=3306)
 
 
 

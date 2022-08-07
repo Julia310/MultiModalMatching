@@ -5,7 +5,7 @@ from Database.Models.utilityModels import Similarities
 class DbUtilityContextManager:
     """
         Database context to save all calculated similarities of the potential classified_matches after performing blocking.
-        Used to Explore different classification thresholds.
+        Used to Explore different threshold_classification thresholds.
     """
 
     def __init__(self):

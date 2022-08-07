@@ -6,8 +6,8 @@ import logging
 conf_path = os.getcwd()
 sys.path.append(conf_path)
 
-from Classification.parallelClassification import ParallelClassification
-from Classification.sequentialClassification import SequentialClassification
+from Classification.ThresholdClassification.parallelClassification import ParallelClassification
+from Classification.ThresholdClassification.sequentialClassification import SequentialClassification
 from Database.DbContextManager.dbEmbeddingContextManager import DbEmbeddingContextManager
 from Database.DbContextManager.dbMatchingResultsManager import DbMatchesContextManager
 from Database.DbContextManager.dbUtilityContextManager import DbUtilityContextManager

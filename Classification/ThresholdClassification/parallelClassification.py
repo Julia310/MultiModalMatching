@@ -4,7 +4,7 @@ from Database.DbContextManager.dbMatchingResultsManager import DbMatchesContextM
 from Database.DbContextManager.dbEmbeddingContextManager import DbEmbeddingContextManager
 from Database.DbContextManager.dbUtilityContextManager import DbUtilityContextManager
 from Util.similarityGenerator import SimilarityGenerator
-from Classification.thresholdPrediction import threshold_prediction
+from Classification.ThresholdClassification.thresholdPrediction import threshold_prediction
 import logging
 
 
