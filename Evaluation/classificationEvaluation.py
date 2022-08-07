@@ -65,4 +65,20 @@ def matching_evaluation(db_context, m_utilites):
     logging.info('  Recall:      %.4f' % (recall(num_tp, num_fn)))
     logging.info('  F-measure:   %.4f' % (f_measure(num_tp, num_fn, num_fp, num_tn)))
 
+def th_gw_classification_evaluation(data_alias, db_context, m_utilites):
+    if data_alias == 'th':
+        potential_matches = m_utilites.get_number_of_th_matching_candidates_before_blocking()
+        dataset = 'Tommy Hilfiger'
+    else:
+        potential_matches = m_utilites.get_number_of_gw_matching_candidates_before_blocking()
+        dataset = 'Gerry Weber'
+    num_tp, num_fp, num_fn, num_tn = db_context.get_th_gw_classification_evaluation_data(potential_matches, data_alias)
+    logging.info(f'TP: {num_tp}, FP: {num_fp}, FN: {num_fn}, TN: {num_tn}')
+    logging.info(f'{dataset} Linkage evaluation:')
+    logging.info('  Accuracy:    %.4f' % (accuracy(num_tp, num_fn, num_fp, num_tn)))
+    logging.info('  Precision:   %.4f' % (precision(num_tp, num_fp)))
+    logging.info('  Recall:      %.4f' % (recall(num_tp, num_fn)))
+    logging.info('  F-measure:   %.4f' % (f_measure(num_tp, num_fn, num_fp, num_tn)))
+
+
 

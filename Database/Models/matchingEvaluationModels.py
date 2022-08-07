@@ -16,8 +16,8 @@ class TrueMatches(BaseModel):
 
 
 class TommyHilfigerIds(BaseModel):
-    th_id = CharField()
+    ref_id = CharField()
 
 
 class GerryWeberIds(BaseModel):
-    gw_id = CharField
+    ref_id = CharField()

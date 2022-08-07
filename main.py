@@ -9,7 +9,7 @@ sys.path.append(conf_path)
 from Classification.ThresholdClassification.parallelClassification import ParallelClassification
 from Classification.ThresholdClassification.sequentialClassification import SequentialClassification
 from Database.DbContextManager.dbEmbeddingContextManager import DbEmbeddingContextManager
-from Database.DbContextManager.dbMatchingResultsManager import DbMatchesContextManager
+from Database.DbContextManager.dbMatchingEvaluationManager import DbMatchesContextManager
 from Database.DbContextManager.dbUtilityContextManager import DbUtilityContextManager
 from dataAlias import ZALANDO_TABLE_ALIAS, TOMMYH_GERRYW_TABLE_ALIAS
 from Evaluation.classificationEvaluation import matching_evaluation
@@ -20,7 +20,9 @@ from EmbeddingCreation.createImageEmbedding import ManageImageEmbeddings
 from Util.matchingUtilities import MatchingUtilities
 from Util.trueMatches import TrueMatches
 from Util.similarityGenerator import SimilarityGenerator
+from Util.mappingTableUtils import MappingTablesUtils
 from time import time
+from Evaluation.classificationEvaluation import th_gw_classification_evaluation
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 os.environ["TOKENIZERS_PARALLELISM"] = 'true'
@@ -42,9 +44,9 @@ def preprocess_data():
 
 
 def recreate_database_tables(db_embedding_manager, db_matches_manager, db_utility_manager):
-    db_embedding_manager.recreate_tables()
+    # db_embedding_manager.recreate_tables()
     db_matches_manager.recreate_tables()
-    db_utility_manager.recreate_tables()
+    # db_utility_manager.recreate_tables()
 
 
 def create_text_embeddings(m_utilities, db_embedding_manager):
@@ -88,6 +90,15 @@ def classification(m_utilities, db_matches_manager=None, db_embedding_manager=No
         sequential_classification.conduct_classification()
     logging.info('Classification performed in ' + str("{:8.2f}".format((time() - start) / 60)) + ' minutes')
 
+def evaluation_data_to_database(db_matches_manager):
+    ##### TRUE MATCHES TO DB #####
+    # true_matches = TrueMatches(db_matches_manager)
+    # true_matches.save_matches_to_db()
+    ##### SAVE MAPPING IDS #####
+    mapping_table_utils = MappingTablesUtils(db_matches_manager)
+
+    mapping_table_utils.mapping_ids_to_database()
+
 
 def main():
     matching_start = time()
@@ -104,28 +115,29 @@ def main():
     # ##### DATABASE CONNECTION #####
 
     # ##### RECREATE TABLES #####
-    recreate_database_tables(db_embedding_manager, db_matches_manager, db_utility_manager)
+    # recreate_database_tables(db_embedding_manager, db_matches_manager, db_utility_manager)
     # ##### RECREATE TABLES #####
 
     # ##### CREATING EMBEDDINGS #####
-    create_text_embeddings(m_utilities, db_embedding_manager)
-    create_image_embeddings(m_utilities, db_embedding_manager)
+    # create_text_embeddings(m_utilities, db_embedding_manager)
+    # create_image_embeddings(m_utilities, db_embedding_manager)
     # ##### CREATING EMBEDDINGS #####
 
-    # ##### TRUE MATCHES TO DB #####
-    true_matches = TrueMatches(db_matches_manager)
-    true_matches.save_matches_to_db()
-    # ##### TRUE MATCHES TO DB #####
+    # ##### SAVE DATA FOR EVALUATION #####
+    # evaluation_data_to_database(db_matches_manager)
+    # ##### SAVE DATA FOR EVALUATION #####
 
     # ##### CONDUCTING CLASSIFICATION #####
-    start = time()
-    classification(m_utilities, db_matches_manager, db_embedding_manager, multi=False)
-    #classification(m_utilities)
+    # start = time()
+    # classification(m_utilities, db_matches_manager, db_embedding_manager, multi=False)
+    # classification(m_utilities)
     # ##### CONDUCTING CLASSIFICATION #####
 
     # ##### EVALUATION #####
-    blocking_evaluation(m_utilities)
+    # blocking_evaluation(m_utilities)
     matching_evaluation(db_matches_manager, m_utilities)
+    th_gw_classification_evaluation("th", db_matches_manager, m_utilities)
+    th_gw_classification_evaluation("gw", db_matches_manager, m_utilities)
     # ##### EVALUATION #####
 
     logging.info('Products matched in ' + str("{:8.2f}".format((time() - matching_start) / (60 * 60))) + ' hours')

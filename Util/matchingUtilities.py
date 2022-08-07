@@ -143,8 +143,12 @@ class MatchingUtilities:
     def __init__(self, data_path_list1, data_path_list2):
         self.zal_dict = create_data_dict(data_path_list1)
         self.th_gw_dict = create_data_dict(data_path_list2)
+        self.th_dict = create_data_dict([data_path_list2[1]])
+        self.gw_dict = create_data_dict([data_path_list2[0]])
         self.zalando_articles = len(list(self.zal_dict.keys()))
         self.tommyh_gerryw_articles = len(list(self.th_gw_dict.keys()))
+        self.tommyh_articles = len(list(self.th_dict.keys()))
+        self.gerryw_articles = len(list(self.gw_dict.keys()))
         self.block_dict_zal = blocking(self.zal_dict)
         self.block_dict_th_gw = blocking(self.th_gw_dict)
         blocks_statistics(self.block_dict_zal, self.block_dict_th_gw)
@@ -156,6 +160,12 @@ class MatchingUtilities:
             returns number of initial matching candidates before blocking for the final matching pipeline evaluation
         """
         return self.zalando_articles * self.tommyh_gerryw_articles
+
+    def get_number_of_th_matching_candidates_before_blocking(self):
+        return self.zalando_articles * self.tommyh_articles
+
+    def get_number_of_gw_matching_candidates_before_blocking(self):
+        return self.zalando_articles * self.gerryw_articles
 
     def create_potential_matches(self):
         """

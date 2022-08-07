@@ -1,6 +1,6 @@
 from multiprocessing import Pool
 from multiprocessing.pool import ThreadPool
-from Database.DbContextManager.dbMatchingResultsManager import DbMatchesContextManager
+from Database.DbContextManager.dbMatchingEvaluationManager import DbMatchesContextManager
 from Database.DbContextManager.dbEmbeddingContextManager import DbEmbeddingContextManager
 from Database.DbContextManager.dbUtilityContextManager import DbUtilityContextManager
 from Util.similarityGenerator import SimilarityGenerator
